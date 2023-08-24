@@ -46,6 +46,12 @@ public class Prozor extends javax.swing.JFrame {
             }
         });
 
+        txtIme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImeActionPerformed(evt);
+            }
+        });
+
         btnPozdraviIme.setText("Pozdravi ime");
         btnPozdraviIme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +119,10 @@ public class Prozor extends javax.swing.JFrame {
         lblPoruka.setText("Pozdrav " + txtIme.getText());
                 
     }//GEN-LAST:event_btnPozdraviImeActionPerformed
+
+    private void txtImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtImeActionPerformed
 
   
 

@@ -30,57 +30,96 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
         txtPrvoIme = new javax.swing.JTextField();
         txtDrugoIme = new javax.swing.JTextField();
         btnIzracunaj = new javax.swing.JButton();
-        txtLjubav = new javax.swing.JLabel();
+        txtLjubav = new javax.swing.JTextField();
+        lblPrvoIme = new javax.swing.JLabel();
+        lblDrugoIme = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtPrvoIme.setText("Prvo Ime");
+        txtPrvoIme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrvoImeActionPerformed(evt);
+            }
+        });
 
-        txtDrugoIme.setText("Drugo Ime");
+        txtDrugoIme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDrugoImeActionPerformed(evt);
+            }
+        });
 
         btnIzracunaj.setText("IZRAČUNAJ");
 
-        txtLjubav.setBackground(new java.awt.Color(255, 102, 255));
-        txtLjubav.setText("Rezultat...");
+        txtLjubav.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLjubavActionPerformed(evt);
+            }
+        });
+
+        lblPrvoIme.setText("Prvo ime");
+
+        lblDrugoIme.setText("Drugo ime");
+        lblDrugoIme.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(txtPrvoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
-                .addComponent(txtDrugoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(111, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(txtLjubav, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(btnIzracunaj)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtLjubav, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnIzracunaj)
+                        .addGap(141, 141, 141))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblPrvoIme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPrvoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtDrugoIme, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                    .addComponent(lblDrugoIme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPrvoIme)
+                    .addComponent(lblDrugoIme))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPrvoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDrugoIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(btnIzracunaj)
-                .addGap(59, 59, 59)
-                .addComponent(txtLjubav, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(txtLjubav, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtDrugoImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDrugoImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDrugoImeActionPerformed
+
+    private void txtPrvoImeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrvoImeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrvoImeActionPerformed
+
+    private void txtLjubavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLjubavActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtLjubavActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,8 +159,10 @@ public class LjubavniKalkulator extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIzracunaj;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblDrugoIme;
+    private javax.swing.JLabel lblPrvoIme;
     private javax.swing.JTextField txtDrugoIme;
-    private javax.swing.JLabel txtLjubav;
+    private javax.swing.JTextField txtLjubav;
     private javax.swing.JTextField txtPrvoIme;
     // End of variables declaration//GEN-END:variables
 }
