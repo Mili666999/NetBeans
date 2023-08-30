@@ -23,15 +23,6 @@ public class Grupa extends Entitet {
     public Grupa() {
     }
 
-    public Grupa(String naziv, Smjer smjer, Integer maxPolaznika, Predavac predavac, Date datumPocetka, List<Polaznik> polaznici) {
-        this.naziv = naziv;
-        this.smjer = smjer;
-        this.maxPolaznika = maxPolaznika;
-        this.predavac = predavac;
-        this.datumPocetka = datumPocetka;
-        this.polaznici = polaznici;
-    }
-
     public Grupa(String naziv, Smjer smjer, Integer maxPolaznika, Predavac predavac, Date datumPocetka, List<Polaznik> polaznici, Integer sifra) {
         super(sifra);
         this.naziv = naziv;
