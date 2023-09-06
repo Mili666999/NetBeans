@@ -29,6 +29,7 @@ public abstract class Obrada<T extends Entitet>{
 
     public void create() throws EdunovaException{
         kontrolaNull();
+        entitet.setSifra(0);
         kontrolaUnos();
         persist();
     }
@@ -42,10 +43,15 @@ public abstract class Obrada<T extends Entitet>{
     public void delete() throws EdunovaException{
         kontrolaNull();
         kontrolaBrisanje();
+        session.beginTransaction();
+        session.remove(entitet);
+        session.getTransaction().commit();
     }
     
     private void persist(){
-    
+        session.beginTransaction();
+        session.persist(entitet);
+        session.getTransaction().commit();
     }
     
     private void kontrolaNull() throws EdunovaException{
@@ -55,10 +61,7 @@ public abstract class Obrada<T extends Entitet>{
         
     }
     
-    
-    
-    
-    
+  
     
     public T getEntitet() {
         return entitet;
