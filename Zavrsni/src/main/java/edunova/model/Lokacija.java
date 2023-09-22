@@ -1,10 +1,13 @@
 package edunova.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 @Entity
 public class Lokacija extends Entitet {
 	
+    
+        @Column(nullable = false)
 	private String naziv;
 	
 	

@@ -1,19 +1,23 @@
 package edunova.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import java.math.BigDecimal;
 
-
+@Entity
 public class AOL extends Entitet {
 	
-	private float kolicinaNaLokaciji;
+	private BigDecimal kolicinaNaLokaciji;
+        @ManyToOne
 	private Oblik oblici;
+        @ManyToOne
 	private Lokacija lokacije;
 	
 	public AOL() {
 		
 	}
 
-	public AOL(int id, float kolicinaNaLokaciji, Oblik oblici, Lokacija lokacije) {
+	public AOL(int id, BigDecimal kolicinaNaLokaciji, Oblik oblici, Lokacija lokacije) {
 		super(id);
 		this.kolicinaNaLokaciji = kolicinaNaLokaciji;
 		this.oblici = oblici;
@@ -21,11 +25,11 @@ public class AOL extends Entitet {
 	}
 
 
-	public float getKolicinaNaLokaciji() {
+	public BigDecimal getKolicinaNaLokaciji() {
 		return kolicinaNaLokaciji;
 	}
 
-	public void setKolicinaNaLokaciji(float kolicinaNaLokaciji) {
+	public void setKolicinaNaLokaciji(BigDecimal kolicinaNaLokaciji) {
 		this.kolicinaNaLokaciji = kolicinaNaLokaciji;
 	}
 

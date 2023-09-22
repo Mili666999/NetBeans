@@ -18,7 +18,12 @@
     <property name="format_sql">true</property>
     <property name="hbm2ddl.auto">update</property>
     
+    <mapping class="edunova.model.Lokacija" />
+    <mapping class="edunova.model.Oblik" />
+    <mapping class="edunova.model.Kategorija" />
+    <mapping class="edunova.model.Artikal" />
     <mapping class="edunova.model.AOL" />
+    
 
     
   </session-factory>

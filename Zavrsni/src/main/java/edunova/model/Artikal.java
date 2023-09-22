@@ -1,19 +1,28 @@
 package edunova.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import java.math.BigDecimal;
 import java.util.List;
 
+@Entity
 public class Artikal extends Entitet  {
 	
+        @Column(nullable = false)
 	private String naziv;
-	private float kolicinaUkupna;
+	private BigDecimal kolicinaUkupna;
+        @ManyToOne
 	private List<Kategorija> kategorije;
+        @OneToMany
 	private List<AOL> aol;
 	
 	public Artikal() {
 		
 	}
 
-	public Artikal(int id, String naziv, float kolicinaUkupna, List<Kategorija> kategorije, List<AOL> aol) {
+	public Artikal(int id, String naziv, BigDecimal kolicinaUkupna, List<Kategorija> kategorije, List<AOL> aol) {
 		super(id);
 		this.naziv = naziv;
 		this.kolicinaUkupna = kolicinaUkupna;
@@ -30,11 +39,11 @@ public class Artikal extends Entitet  {
 		this.naziv = naziv;
 	}
 	
-	public float getKolicinaUkupna() {
+	public BigDecimal getKolicinaUkupna() {
 		return kolicinaUkupna;
 	}
 	
-	public void setKolicinaUkupna(float kolicinaUkupna) {
+	public void setKolicinaUkupna(BigDecimal kolicinaUkupna) {
 		this.kolicinaUkupna = kolicinaUkupna;
 	}
 	

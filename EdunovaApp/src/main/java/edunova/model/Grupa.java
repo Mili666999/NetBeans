@@ -5,7 +5,6 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import java.util.Date;
 import java.util.List;
-import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Grupa extends Entitet {
