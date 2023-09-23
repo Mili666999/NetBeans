@@ -2,6 +2,7 @@ package edunova.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import java.math.BigDecimal;
@@ -13,7 +14,7 @@ public class Artikal extends Entitet  {
         @Column(nullable = false)
 	private String naziv;
 	private BigDecimal kolicinaUkupna;
-        @ManyToOne
+        @OneToMany
 	private List<Kategorija> kategorije;
         @OneToMany
 	private List<AOL> aol;
