@@ -12,9 +12,9 @@ import java.util.List;
 public class AOL extends Entitet {
 	
 	private BigDecimal kolicinaNaLokaciji;
-        @ManyToMany
+        @OneToMany
 	private List<Oblik> oblici;
-        @ManyToMany
+        @OneToMany
 	private List<Lokacija> lokacije;
 	
 	public AOL() {

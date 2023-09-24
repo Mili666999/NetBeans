@@ -42,6 +42,8 @@ public class PocetniInsert {
         lokacije = new ArrayList<>();
         oblici = new ArrayList<>();
         kategorije = new ArrayList<>();
+        aoli = new ArrayList<>();
+        artikli = new ArrayList<>();
         session.getTransaction().begin();
         kreirajLokacije();
         kreirajOblike();
@@ -84,22 +86,32 @@ public class PocetniInsert {
     
     private void kreirajAole() {
         AOL a;
+        List<Lokacija> lok;
+        List<Oblik> obl;
         for(int i=0;i<BROJ_AOLA;i++){
             a = new AOL();
             a.setKolicinaNaLokaciji(new BigDecimal(faker.number().numberBetween(1, 1000)));
+            lok = new ArrayList<>();
             a.setLokacije((Lokacija) (List<Lokacija>) lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
+            obl = new ArrayList<>();
             a.setOblici((Oblik) (List<Oblik>) oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
+            session.persist(a);
+            aoli.add(a);
         }
     }
 
     private void kreirajArtikle() {
         Artikal a;
+        List<Kategorija> kat;
+        List<AOL> aol;
         for(int i=0;i<BROJ_ARTIKALA;i++){
             a = new Artikal();
             a.setNaziv(faker.medical().medicineName());
             a.setKolicinaUkupna(new BigDecimal(faker.number().numberBetween(1, 1000)));
             a.setKategorije((List<Kategorija>) kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
             a.setAol((List<AOL>) aoli.get(faker.number().numberBetween(0, BROJ_AOLA-1)));
+            session.persist(a);
+            artikli.add(a);
         }
         
     }

@@ -7,10 +7,10 @@ import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Entitet {
-	
-	@Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Integer id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     public Entitet() {
     }
@@ -26,14 +26,5 @@ public abstract class Entitet {
     public void setId(Integer id) {
         this.id = id;
     }
-        
-    
-
-   
-	
-	
-
-	
-	
 
 }
