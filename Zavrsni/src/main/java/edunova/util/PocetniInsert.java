@@ -91,10 +91,14 @@ public class PocetniInsert {
         for(int i=0;i<BROJ_AOLA;i++){
             a = new AOL();
             a.setKolicinaNaLokaciji(new BigDecimal(faker.number().numberBetween(1, 1000)));
+           
             lok = new ArrayList<>();
-            a.setLokacije((Lokacija) (List<Lokacija>) lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
+            lok.add(lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
+            a.setLokacije((Lokacija) lok);
+            
             obl = new ArrayList<>();
-            a.setOblici((Oblik) (List<Oblik>) oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
+            obl.add(oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA)));
+            a.setOblici((Oblik) obl);
             session.persist(a);
             aoli.add(a);
         }

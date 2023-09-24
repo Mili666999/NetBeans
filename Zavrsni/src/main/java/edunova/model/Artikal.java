@@ -14,9 +14,9 @@ public class Artikal extends Entitet  {
         @Column(nullable = false)
 	private String naziv;
 	private BigDecimal kolicinaUkupna;
-        @OneToMany
+        @ManyToMany
 	private List<Kategorija> kategorije;
-        @OneToMany
+        @ManyToMany
 	private List<AOL> aol;
 	
 	public Artikal() {
