@@ -14,16 +14,16 @@ public class Artikal extends Entitet  {
         @Column(nullable = false)
 	private String naziv;
 	private BigDecimal kolicinaUkupna;
-        @ManyToMany
-	private List<Kategorija> kategorije;
-        @ManyToMany
-	private List<AOL> aol;
+        @ManyToOne
+	private Kategorija kategorije;
+        @ManyToOne
+	private AOL aol;
 	
 	public Artikal() {
 		
 	}
 
-	public Artikal(int id, String naziv, BigDecimal kolicinaUkupna, List<Kategorija> kategorije, List<AOL> aol) {
+	public Artikal(int id, String naziv, BigDecimal kolicinaUkupna, Kategorija kategorije, AOL aol) {
 		super(id);
 		this.naziv = naziv;
 		this.kolicinaUkupna = kolicinaUkupna;
@@ -48,19 +48,19 @@ public class Artikal extends Entitet  {
 		this.kolicinaUkupna = kolicinaUkupna;
 	}
 	
-	public List<Kategorija> getKategorije() {
+	public Kategorija getKategorije() {
 		return kategorije;
 	}
 	
-	public void setKategorije(List<Kategorija> kategorije) {
+	public void setKategorije(Kategorija kategorije) {
 		this.kategorije = kategorije;
 	}
 	
-	public List<AOL> getAol() {
+	public AOL getAol() {
 		return aol;
 	}
 	
-	public void setAol(List<AOL> aol) {
+	public void setAol(AOL aol) {
 		this.aol = aol;
 	}
 

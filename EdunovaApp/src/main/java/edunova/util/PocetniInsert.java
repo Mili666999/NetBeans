@@ -101,6 +101,7 @@ public class PocetniInsert {
             g.setPredavac(predavaci.get(faker.number().numberBetween(0, BROJ_PREDAVACA-1)));
             g.setSmjer(smjerovi.get(faker.number().numberBetween(0, BROJ_SMJEROVA)));
             g.setMaxPolaznika(faker.number().numberBetween(5, 30));
+           
             p = new ArrayList<>();
             for(int j=0; j<faker.number().numberBetween(5, g.getMaxPolaznika()); j++){
                 p.add(polaznici.get(faker.number().numberBetween(0, BROJ_POLAZNIKA-1)));

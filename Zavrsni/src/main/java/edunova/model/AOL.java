@@ -12,10 +12,10 @@ import java.util.List;
 public class AOL extends Entitet {
 	
 	private BigDecimal kolicinaNaLokaciji;
-        @ManyToMany
-	private List<Oblik> oblici;
-        @ManyToMany
-	private List<Lokacija> lokacije;
+        @ManyToOne
+	private Oblik oblici;
+        @ManyToOne
+	private Lokacija lokacije;
 	
 	public AOL() {
 		
@@ -24,8 +24,8 @@ public class AOL extends Entitet {
 	public AOL(int id, BigDecimal kolicinaNaLokaciji, Oblik oblici, Lokacija lokacije) {
 		super(id);
 		this.kolicinaNaLokaciji = kolicinaNaLokaciji;
-		this.oblici = (List<Oblik>) oblici;
-		this.lokacije = (List<Lokacija>) lokacije;
+		this.oblici = oblici;
+		this.lokacije = lokacije;
 	}
 
 
@@ -42,7 +42,7 @@ public class AOL extends Entitet {
 	}
 
 	public void setOblici(Oblik oblici) {
-		this.oblici = (List<Oblik>) oblici;
+		this.oblici = oblici;
 	}
 
 	public Lokacija getLokacije() {
@@ -50,7 +50,7 @@ public class AOL extends Entitet {
 	}
 
 	public void setLokacije(Lokacija lokacije) {
-		this.lokacije = (List<Lokacija>) lokacije;
+		this.lokacije = lokacije;
 	}
 	
 }
