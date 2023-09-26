@@ -10,47 +10,46 @@ import java.util.List;
 
 @Entity
 public class AOL extends Entitet {
-	
-	private BigDecimal kolicinaNaLokaciji;
-        @ManyToOne
-	private Oblik oblici;
-        @ManyToOne
-	private Lokacija lokacije;
-	
-	public AOL() {
-		
-	}
 
-	public AOL(int id, BigDecimal kolicinaNaLokaciji, Oblik oblici, Lokacija lokacije) {
-		super(id);
-		this.kolicinaNaLokaciji = kolicinaNaLokaciji;
-		this.oblici = oblici;
-		this.lokacije = lokacije;
-	}
+    private BigDecimal kolicinaNaLokaciji;
+    @ManyToMany
+    private List<Oblik> oblici;
+    @ManyToMany
+    private List<Lokacija> lokacije;
 
+    public AOL() {
+    }
 
-	public BigDecimal getKolicinaNaLokaciji() {
-		return kolicinaNaLokaciji;
-	}
+    public AOL(BigDecimal kolicinaNaLokaciji, List<Oblik> oblici, List<Lokacija> lokacije, Integer id) {
+        super(id);
+        this.kolicinaNaLokaciji = kolicinaNaLokaciji;
+        this.oblici = oblici;
+        this.lokacije = lokacije;
+    }
 
-	public void setKolicinaNaLokaciji(BigDecimal kolicinaNaLokaciji) {
-		this.kolicinaNaLokaciji = kolicinaNaLokaciji;
-	}
+    public BigDecimal getKolicinaNaLokaciji() {
+        return kolicinaNaLokaciji;
+    }
 
-	public Oblik getOblici() {
-		return (Oblik) oblici;
-	}
+    public void setKolicinaNaLokaciji(BigDecimal kolicinaNaLokaciji) {
+        this.kolicinaNaLokaciji = kolicinaNaLokaciji;
+    }
 
-	public void setOblici(Oblik oblici) {
-		this.oblici = oblici;
-	}
+    public List<Oblik> getOblici() {
+        return oblici;
+    }
 
-	public Lokacija getLokacije() {
-		return (Lokacija) lokacije;
-	}
+    public void setOblici(List<Oblik> oblici) {
+        this.oblici = oblici;
+    }
 
-	public void setLokacije(Lokacija lokacije) {
-		this.lokacije = lokacije;
-	}
-	
+    public List<Lokacija> getLokacije() {
+        return lokacije;
+    }
+
+    public void setLokacije(List<Lokacija> lokacije) {
+        this.lokacije = lokacije;
+    }
+
+    
 }

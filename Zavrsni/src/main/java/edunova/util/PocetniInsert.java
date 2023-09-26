@@ -50,7 +50,6 @@ public class PocetniInsert {
         kreirajKategorije();
         kreirajAole();
         kreirajArtikle();
-        
         session.getTransaction().commit();
     }
 
@@ -86,11 +85,19 @@ public class PocetniInsert {
     
     private void kreirajAole() {
         AOL a;
+        List<Oblik> o;
+        List<Lokacija> l;
         for(int i=0;i<BROJ_AOLA;i++){
             a = new AOL();
             a.setKolicinaNaLokaciji(new BigDecimal(faker.number().numberBetween(1, 1000)));
-            a.setOblici(oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
-            a.setLokacije(lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
+            
+            o = new ArrayList<>();
+            o.add(oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
+            a.setOblici(o);
+            
+            l = new ArrayList<>();
+            l.add(lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
+            a.setLokacije(l);
             session.persist(a);
             aoli.add(a);
         }
@@ -98,12 +105,21 @@ public class PocetniInsert {
 
     private void kreirajArtikle() {
         Artikal a;
+        List<Kategorija> k;
+        List<AOL> ao;
         for(int i=0;i<BROJ_ARTIKALA;i++){
             a = new Artikal();
             a.setNaziv(faker.medical().medicineName());
             a.setKolicinaUkupna(new BigDecimal(faker.number().numberBetween(1, 1000)));
-            a.setKategorije(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
-            a.setAol(aoli.get(faker.number().numberBetween(0, BROJ_AOLA-1)));
+            
+            k = new ArrayList<>();
+            k.add(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
+            a.setKategorije(k);
+            
+            ao = new ArrayList<>();
+            ao.add(aoli.get(faker.number().numberBetween(0, BROJ_AOLA-1)));
+            a.setAoli(ao);
+            
             session.persist(a);
             artikli.add(a);
         }
