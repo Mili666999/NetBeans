@@ -90,7 +90,7 @@ public class PocetniInsert {
             a.setKolicinaNaLokaciji(new BigDecimal(faker.number().numberBetween(1, 1000)));
             a.setLokacija(lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
             a.setOblik(oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
-            //a.setArtikal(artikli.get(faker.number().numberBetween(0, BROJ_ARTIKALA-1)));
+            a.setArtikal(artikli.get(faker.number().numberBetween(0, BROJ_ARTIKALA-1)));
             session.persist(a);
             aoli.add(a);
         }

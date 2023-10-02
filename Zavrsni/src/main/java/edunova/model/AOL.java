@@ -23,7 +23,7 @@ public class AOL extends Entitet {
         this.kolicinaNaLokaciji = kolicinaNaLokaciji;
         this.oblik = oblik;
         this.lokacija = lokacija;
-        //this.artikal = artikal;
+        this.artikal = artikal;
     }
 
     public BigDecimal getKolicinaNaLokaciji() {
