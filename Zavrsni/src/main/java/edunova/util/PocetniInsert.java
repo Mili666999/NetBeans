@@ -48,8 +48,8 @@ public class PocetniInsert {
         kreirajLokacije();
         kreirajOblike();
         kreirajKategorije();
-        kreirajAole();
         kreirajArtikle();
+        kreirajAole();
         session.getTransaction().commit();
     }
 
@@ -85,19 +85,12 @@ public class PocetniInsert {
     
     private void kreirajAole() {
         AOL a;
-        List<Oblik> o;
-        List<Lokacija> l;
         for(int i=0;i<BROJ_AOLA;i++){
             a = new AOL();
             a.setKolicinaNaLokaciji(new BigDecimal(faker.number().numberBetween(1, 1000)));
-            
-            o = new ArrayList<>();
-            o.add(oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
-            a.setOblici(o);
-            
-            l = new ArrayList<>();
-            l.add(lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
-            a.setLokacije(l);
+            a.setLokacija(lokacije.get(faker.number().numberBetween(0, BROJ_LOKACIJA-1)));
+            a.setOblik(oblici.get(faker.number().numberBetween(0, BROJ_OBLIKA-1)));
+            //a.setArtikal(artikli.get(faker.number().numberBetween(0, BROJ_ARTIKALA-1)));
             session.persist(a);
             aoli.add(a);
         }
@@ -105,21 +98,16 @@ public class PocetniInsert {
 
     private void kreirajArtikle() {
         Artikal a;
-        List<Kategorija> k;
         List<AOL> ao;
         for(int i=0;i<BROJ_ARTIKALA;i++){
             a = new Artikal();
             a.setNaziv(faker.medical().medicineName());
             a.setKolicinaUkupna(new BigDecimal(faker.number().numberBetween(1, 1000)));
-            
-            k = new ArrayList<>();
-            k.add(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
-            a.setKategorije(k);
+            a.setKategorija(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
             
             ao = new ArrayList<>();
-            ao.add(aoli.get(faker.number().numberBetween(0, BROJ_AOLA-1)));
+            ao.add(aoli.get(faker.number().numberBetween(0, BROJ_AOLA)));
             a.setAoli(ao);
-            
             session.persist(a);
             artikli.add(a);
         }

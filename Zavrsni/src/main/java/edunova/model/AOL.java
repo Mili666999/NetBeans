@@ -1,30 +1,29 @@
 package edunova.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Entity
 public class AOL extends Entitet {
 
     private BigDecimal kolicinaNaLokaciji;
-    @ManyToMany
-    private List<Oblik> oblici;
-    @ManyToMany
-    private List<Lokacija> lokacije;
+    @ManyToOne
+    private Oblik oblik;
+    @ManyToOne
+    private Lokacija lokacija;
+    @ManyToOne
+    private Artikal artikal;
 
     public AOL() {
     }
 
-    public AOL(BigDecimal kolicinaNaLokaciji, List<Oblik> oblici, List<Lokacija> lokacije, Integer id) {
+    public AOL(BigDecimal kolicinaNaLokaciji, Oblik oblik, Lokacija lokacija, Artikal artikal, Integer id) {
         super(id);
         this.kolicinaNaLokaciji = kolicinaNaLokaciji;
-        this.oblici = oblici;
-        this.lokacije = lokacije;
+        this.oblik = oblik;
+        this.lokacija = lokacija;
+        //this.artikal = artikal;
     }
 
     public BigDecimal getKolicinaNaLokaciji() {
@@ -35,21 +34,31 @@ public class AOL extends Entitet {
         this.kolicinaNaLokaciji = kolicinaNaLokaciji;
     }
 
-    public List<Oblik> getOblici() {
-        return oblici;
+    public Oblik getOblik() {
+        return oblik;
     }
 
-    public void setOblici(List<Oblik> oblici) {
-        this.oblici = oblici;
+    public void setOblik(Oblik oblik) {
+        this.oblik = oblik;
     }
 
-    public List<Lokacija> getLokacije() {
-        return lokacije;
+    public Lokacija getLokacija() {
+        return lokacija;
     }
 
-    public void setLokacije(List<Lokacija> lokacije) {
-        this.lokacije = lokacije;
+    public void setLokacija(Lokacija lokacija) {
+        this.lokacija = lokacija;
     }
+
+    public Artikal getArtikal() {
+        return artikal;
+    }
+
+    public void setArtikal(Artikal artikal) {
+        this.artikal = artikal;
+    }
+
+
 
     
 }
