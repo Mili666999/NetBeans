@@ -98,16 +98,11 @@ public class PocetniInsert {
 
     private void kreirajArtikle() {
         Artikal a;
-        List<AOL> ao;
         for(int i=0;i<BROJ_ARTIKALA;i++){
             a = new Artikal();
             a.setNaziv(faker.medical().medicineName());
             a.setKolicinaUkupna(new BigDecimal(faker.number().numberBetween(1, 1000)));
             a.setKategorija(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
-            
-            ao = new ArrayList<>();
-            ao.add(aoli.get(faker.number().numberBetween(0, BROJ_AOLA)));
-            a.setAoli(ao);
             session.persist(a);
             artikli.add(a);
         }
