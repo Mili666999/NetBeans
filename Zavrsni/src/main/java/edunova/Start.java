@@ -6,10 +6,13 @@ package edunova;
 
 import edunova.controller.Obrada;
 import edunova.controller.ObradaLokacija;
+import edunova.controller.ObradaOblik;
 import edunova.model.Lokacija;
+import edunova.model.Oblik;
 import edunova.util.HibernateUtil;
 import edunova.util.PocetniInsert;
 import edunova.util.SocopanException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,10 +27,16 @@ public class Start {
         //HibernateUtil.getSession();
         //new PocetniInsert();
         
+        List<Oblik> oblici = new ObradaOblik().read();
         
+        Oblik zadnjiOblik = oblici.get(oblici.size()-1);
         
-        for(Lokacija l : new ObradaLokacija().read()){
-            System.out.println(l.getNaziv());
+        ObradaOblik oo = new ObradaOblik(zadnjiOblik);
+        
+        try {
+            oo.delete();
+        } catch (SocopanException e) {
+            e.printStackTrace();
         }
         
     

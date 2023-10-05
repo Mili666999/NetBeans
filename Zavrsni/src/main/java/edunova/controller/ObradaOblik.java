@@ -4,7 +4,7 @@
  */
 package edunova.controller;
 
-import edunova.model.Lokacija;
+import edunova.model.Oblik;
 import edunova.util.SocopanException;
 import java.util.List;
 
@@ -12,20 +12,19 @@ import java.util.List;
  *
  * @author Mili
  */
-public class ObradaLokacija extends Obrada<Lokacija>{
+public class ObradaOblik extends Obrada<Oblik>{
     
-    public ObradaLokacija(){
+    public ObradaOblik(){
         super();
     }
     
-    public ObradaLokacija(Lokacija l){
-        super(l);
+    public ObradaOblik(Oblik o){
+        super(o);
     }
-
+    
     @Override
-    public List<Lokacija> read() {
-        //HQL
-        return session.createQuery("from Lokacija", Lokacija.class).list();
+    public List<Oblik> read() {
+        return session.createQuery("from Oblik", Oblik.class).list();
     }
 
     @Override
@@ -41,16 +40,16 @@ public class ObradaLokacija extends Obrada<Lokacija>{
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
         if(entitet.getAoli().size()>0){
-            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava");
+            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
         }
     }
 
     private void kontrolaNaziv() throws SocopanException{
         if(entitet.getNaziv()==null){
-            throw new SocopanException("Naziv lokacije mora biti definiran");
+            throw new SocopanException("Naziv oblika mora biti definiran");
         }
         if(entitet.getNaziv().isEmpty()){
-            throw new SocopanException("Naziv lokacije ne smije biti prazan");
+            throw new SocopanException("Naziv oblika ne smije biti prazan");
         }
     }
     
