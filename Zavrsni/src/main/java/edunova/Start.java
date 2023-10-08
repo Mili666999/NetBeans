@@ -5,8 +5,10 @@
 package edunova;
 
 import edunova.controller.Obrada;
+import edunova.controller.ObradaArtikal;
 import edunova.controller.ObradaLokacija;
 import edunova.controller.ObradaOblik;
+import edunova.model.Artikal;
 import edunova.model.Lokacija;
 import edunova.model.Oblik;
 import edunova.util.HibernateUtil;
@@ -27,14 +29,14 @@ public class Start {
         //HibernateUtil.getSession();
         //new PocetniInsert();
         
-        List<Oblik> oblici = new ObradaOblik().read();
+        List<Artikal> artikli = new ObradaArtikal().read();
         
-        Oblik zadnjiOblik = oblici.get(oblici.size()-1);
+        Artikal zadnjiArtikal = artikli.get(artikli.size()-1);
         
-        ObradaOblik oo = new ObradaOblik(zadnjiOblik);
+        ObradaArtikal oa = new ObradaArtikal(zadnjiArtikal);
         
         try {
-            oo.delete();
+            oa.delete();
         } catch (SocopanException e) {
             e.printStackTrace();
         }

@@ -24,22 +24,39 @@ public class ObradaArtikal extends Obrada<Artikal>{
     
     @Override
     public List<Artikal> read() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return session.createQuery("from Artikal", Artikal.class).list();
     }
 
     @Override
     protected void kontrolaUnos() throws SocopanException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        kontrolaNaziv();
     }
 
     @Override
     protected void kontrolaPromjena() throws SocopanException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        kontrolaUnos();
     }
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(entitet.getKolicinaUkupna().intValue()!=0){
+            throw new SocopanException("Artikal se ne može obrisati jer ukupna količina nije 0(nula)");
+        }
+    }
+
+    private void kontrolaNaziv() throws SocopanException{
+        if(entitet.getNaziv()==null){
+            throw new SocopanException("Naziv artikla mora biti definiran");
+        }
+        if(entitet.getNaziv().isEmpty()){
+            throw new SocopanException("Naziv artikla ne smije biti prazan");
+        }
+        if(entitet.getKategorija()==null){
+            throw new SocopanException("Kategorija artikla mora biti definirana");
+        }
+        if(entitet.getKategorija().toString().isEmpty()){
+            throw new SocopanException("Kategorija artikla mora biti definirana");
+        }
     }
     
 }
