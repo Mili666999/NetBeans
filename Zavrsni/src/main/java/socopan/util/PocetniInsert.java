@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edunova.util;
+package socopan.util;
 
 import com.github.javafaker.Faker;
-import edunova.model.AOL;
-import edunova.model.Artikal;
-import edunova.model.Kategorija;
-import edunova.model.Lokacija;
-import edunova.model.Oblik;
+import socopan.model.AOL;
+import socopan.model.Artikal;
+import socopan.model.Kategorija;
+import socopan.model.Lokacija;
+import socopan.model.Oblik;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;

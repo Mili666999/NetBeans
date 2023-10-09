@@ -1,4 +1,4 @@
-package edunova.model;
+package socopan.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,18 +6,18 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Lokacija extends Entitet {
+public class Oblik extends Entitet {
 
     @Column(nullable = false)
     private String naziv;
-    @OneToMany(mappedBy = "lokacija")
+    @OneToMany(mappedBy = "oblik")
     private List<AOL> aoli;
 
-    public Lokacija() {
+    public Oblik() {
 
     }
 
-    public Lokacija(int id, String naziv) {
+    public Oblik(int id, String naziv) {
         super(id);
         this.naziv = naziv;
     }

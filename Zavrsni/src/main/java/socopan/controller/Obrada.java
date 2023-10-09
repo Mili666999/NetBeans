@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edunova.controller;
+package socopan.controller;
 
-import edunova.model.Entitet;
-import edunova.util.HibernateUtil;
-import edunova.util.SocopanException;
+import socopan.model.Entitet;
+import socopan.util.HibernateUtil;
+import socopan.util.SocopanException;
 import java.util.List;
 import org.hibernate.Session;
 

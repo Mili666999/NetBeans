@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package edunova.controller;
+package socopan.controller;
 
-import edunova.model.Oblik;
-import edunova.util.SocopanException;
+import socopan.model.Oblik;
+import socopan.util.SocopanException;
 import java.util.List;
 
 /**

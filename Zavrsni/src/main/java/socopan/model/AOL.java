@@ -1,4 +1,4 @@
-package edunova.model;
+package socopan.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
