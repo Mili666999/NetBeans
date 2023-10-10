@@ -18,11 +18,11 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
     
-        <mapping class="edunova.model.Lokacija" />
-        <mapping class="edunova.model.Oblik" />
-        <mapping class="edunova.model.Kategorija" />
-        <mapping class="edunova.model.AOL" />
-        <mapping class="edunova.model.Artikal" />
+        <mapping class="socopan.model.Lokacija" />
+        <mapping class="socopan.model.Oblik" />
+        <mapping class="socopan.model.Kategorija" />
+        <mapping class="socopan.model.AOL" />
+        <mapping class="socopan.model.Artikal" />
 
     
 
