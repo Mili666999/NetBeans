@@ -52,6 +52,13 @@ public class ObradaLokacija extends Obrada<Lokacija>{
         if(entitet.getNaziv().isEmpty()){
             throw new SocopanException("Naziv lokacije ne smije biti prazan");
         }
+        
+        List<Lokacija> lista = session.createQuery("from Lokacija l where l.naziv like :uvjet", Lokacija.class)
+                .setParameter("uvjet", entitet.getNaziv() + "%").list();
+        
+        if(lista != null && !lista.isEmpty()){
+            throw new SocopanException("Taj naziv se već koristi");
+        }
     }
     
 }

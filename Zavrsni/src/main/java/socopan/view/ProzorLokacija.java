@@ -58,6 +58,11 @@ public class ProzorLokacija extends javax.swing.JFrame {
 
         lstPodaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPodaciValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstPodaci);
 
         btnDodaj.setText("Dodaj");
@@ -142,6 +147,7 @@ public class ProzorLokacija extends javax.swing.JFrame {
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Lokacija());
+        popuniModel();
         try {
             obrada.create();
             ucitaj();
@@ -155,10 +161,51 @@ public class ProzorLokacija extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        // TODO add your handling code here:
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        
+        var e = lstPodaci.getSelectedValue();
+        
+        if(JOptionPane.showConfirmDialog(getRootPane(), e.getNaziv(), "Sigurno obrisati?", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
+            return;
+        }
+        
+        obrada.setEntitet(e);
+        
+        try {
+            obrada.delete();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
     }//GEN-LAST:event_btnObrisiActionPerformed
 
-
+    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
+        if(evt.getValueIsAdjusting()){
+            return;
+        }
+        
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        
+        obrada.setEntitet(lstPodaci.getSelectedValue());
+        
+        popuniView();
+        
+    }//GEN-LAST:event_lstPodaciValueChanged
+    private void popuniModel(){
+        var e = obrada.getEntitet();
+        e.setNaziv(txtDodaj.getText()); 
+    }
+    
+    private void popuniView(){
+        var e = obrada.getEntitet();
+        
+        txtPromjeni.setText(e.getNaziv());
+        txtObrisi.setText(e.getNaziv());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
