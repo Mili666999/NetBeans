@@ -157,7 +157,21 @@ public class ProzorLokacija extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        // TODO add your handling code here:
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        
+        var e = lstPodaci.getSelectedValue();
+        
+        obrada.setEntitet(e);
+        popuniModel();
+        
+        try {
+            obrada.update();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed

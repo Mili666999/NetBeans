@@ -35,7 +35,7 @@ public class ObradaLokacija extends Obrada<Lokacija>{
 
     @Override
     protected void kontrolaPromjena() throws SocopanException {
-        kontrolaUnos();
+        kontrolaNaziv();
     }
 
     @Override
