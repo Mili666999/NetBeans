@@ -12,7 +12,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author Mili
+ * @author Katedra
  */
 public abstract class Obrada<T extends Entitet>{
     
@@ -22,14 +22,19 @@ public abstract class Obrada<T extends Entitet>{
     protected abstract void kontrolaUnos() throws EdunovaException;
     protected abstract void kontrolaPromjena() throws EdunovaException;
     protected abstract void kontrolaBrisanje() throws EdunovaException;
-            
+    
     public Obrada(){
         session = HibernateUtil.getSession();
     }
-
+    
+    public Obrada(T entitet){
+        this();
+        this.entitet=entitet;
+    }
+    
     public void create() throws EdunovaException{
         kontrolaNull();
-        entitet.setSifra(0);
+        entitet.setSifra(null);
         kontrolaUnos();
         persist();
     }
@@ -55,21 +60,33 @@ public abstract class Obrada<T extends Entitet>{
     }
     
     private void kontrolaNull() throws EdunovaException{
-         if(entitet==null){
-            throw new EdunovaException("Entitet je null!");
-        }
-        
+       if(entitet==null){
+            throw new EdunovaException("Entitet je null");
+        } 
+       
     }
     
-  
-    
+
     public T getEntitet() {
         return entitet;
     }
 
     public void setEntitet(T entitet) {
         this.entitet = entitet;
+        /*
+        if(entitet.getSifra()!=null & entitet.getSifra()>0){
+            refresh();
+        }
+        */       
     }
+    
+    
+    public void refresh(){
+        if(entitet!=null){
+            session.refresh(entitet);
+        }
+    }
+    
     
     
     

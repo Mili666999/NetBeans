@@ -6,9 +6,9 @@ package edunova.util;
 
 /**
  *
- * @author Mili
+ * @author Katedra
  */
-public class EdunovaException extends Exception{
+public class EdunovaException  extends Exception{
     
     private String poruka;
 
@@ -20,6 +20,9 @@ public class EdunovaException extends Exception{
     public String getPoruka() {
         return poruka;
     }
+    
+    
+    
     
     
 }

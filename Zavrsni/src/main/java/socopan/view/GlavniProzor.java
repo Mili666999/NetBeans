@@ -4,7 +4,10 @@
  */
 package socopan.view;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import socopan.controller.ObradaArtikal;
+import socopan.model.Artikal;
 import socopan.util.Alati;
 
 /**
@@ -12,13 +15,24 @@ import socopan.util.Alati;
  * @author Mili
  */
 public class GlavniProzor extends javax.swing.JFrame {
+    
+    private ObradaArtikal obrada;
 
     /**
      * Creates new form GlavniProzor
      */
     public GlavniProzor() {
         initComponents();
+        obrada = new ObradaArtikal();
         setTitle(Alati.NAZIV_APP);
+        ucitaj();
+    }
+    
+    private void ucitaj() {
+        DefaultListModel<Artikal> m = new DefaultListModel<>();
+        m.addAll(obrada.read());
+        lstPodaci.setModel(m);
+        lstPodaci.repaint();
         
     }
 
@@ -32,7 +46,7 @@ public class GlavniProzor extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        lstIspis = new javax.swing.JList<>();
+        lstPodaci = new javax.swing.JList<>();
         btnLijekovi = new javax.swing.JToggleButton();
         btnInfuzije = new javax.swing.JToggleButton();
         btnEndoskopije = new javax.swing.JToggleButton();
@@ -50,8 +64,9 @@ public class GlavniProzor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lstIspis.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane1.setViewportView(lstIspis);
+        lstPodaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(lstPodaci);
 
         btnLijekovi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLijekovi.setLabel("Lijekovi");
@@ -171,11 +186,11 @@ public class GlavniProzor extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        new ProzorLokacije().setVisible(true);
+        new ProzorLokacija().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        new ProzorOblici().setVisible(true);
+        new ProzorOblik().setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 
@@ -195,6 +210,8 @@ public class GlavniProzor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> lstIspis;
+    private javax.swing.JList<Artikal> lstPodaci;
     // End of variables declaration//GEN-END:variables
+
+    
 }

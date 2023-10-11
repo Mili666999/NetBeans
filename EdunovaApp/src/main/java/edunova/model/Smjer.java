@@ -2,63 +2,31 @@ package edunova.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
+@Entity @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Smjer extends Entitet {
-	
-        @Column(nullable = false)
-	private String naziv;
-	private BigDecimal cijena;
-	private BigDecimal upisnina;
-	private Integer trajanje;
-        @Column(columnDefinition = "boolean")
-	private boolean verificiran;
-	
-	
-	public Smjer() {
-		
-	}
-	public Smjer(int sifra, String naziv, BigDecimal cijena, BigDecimal upisnina, Integer trajanje, boolean verificiran) {
-		super(sifra);
-		this.naziv = naziv;
-		this.cijena = cijena;
-		this.upisnina = upisnina;
-		this.trajanje = trajanje;
-		this.verificiran = verificiran;
-	}
-        
-	public String getNaziv() {
-		return naziv;
-	}
-	public void setNaziv(String naziv) {
-		this.naziv = naziv;
-	}
-	public BigDecimal getCijena() {
-		return cijena;
-	}
-	public void setCijena(BigDecimal cijena) {
-		this.cijena = cijena;
-	}
-	public BigDecimal getUpisnina() {
-		return upisnina;
-	}
-	public void setUpisnina(BigDecimal upisnina) {
-		this.upisnina = upisnina;
-	}
-	public Integer getTrajanje() {
-		return trajanje;
-	}
-	public void setTrajanje(Integer trajanje) {
-		this.trajanje = trajanje;
-	}
-	public boolean isVerificiran() {
-		return verificiran;
-	}
-	public void setVerificiran(boolean verificiran) {
-		this.verificiran = verificiran;
-	}
-	
-	
 
+    @Column(nullable = false)
+    private String naziv;
+    private BigDecimal cijena;
+    private BigDecimal upisnina;
+    private Integer trajanje;
+    @Column(columnDefinition = "boolean")
+    private Boolean verificiran;
+    @OneToMany(mappedBy = "smjer")
+    private List<Grupa> grupe = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return naziv;
+    }
+   
 }

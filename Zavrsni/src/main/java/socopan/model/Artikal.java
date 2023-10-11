@@ -61,6 +61,13 @@ public class Artikal extends Entitet {
         this.aoli = aoli;
     }
 
+    @Override
+    public String toString() {
+        return naziv;
+    }
+    
+    
+
 
 
 }

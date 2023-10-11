@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package socopan.view;
+package edunova.view;
 
+import edunova.util.HibernateUtil;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
-import socopan.util.HibernateUtil;
 
 /**
  *
- * @author Mili
+ * @author Katedra
  */
 public class SplashScreen extends javax.swing.JFrame {
 
@@ -20,10 +20,9 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen() {
         initComponents();
         ucitaj();
-        
     }
-
-    private void ucitaj() {
+    
+    private void ucitaj(){
         new Ucitanje().start();
     }
     
@@ -33,10 +32,12 @@ public class SplashScreen extends javax.swing.JFrame {
         public void run() {
             Session s = HibernateUtil.getSession();
             if(s.getMetamodel().getEntities().isEmpty()){
-                JOptionPane.showMessageDialog(getRootPane(), "Problem u radu s bazom");
+                JOptionPane.showMessageDialog(getRootPane(), 
+                        "Problem u radu s bazom");
                 return;
             }
-            new GlavniProzor().setVisible(true);
+            
+            new Autorizacija().setVisible(true);
             dispose();
         }
         
@@ -59,24 +60,24 @@ public class SplashScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setType(java.awt.Window.Type.POPUP);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/loader.gif"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edunova.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

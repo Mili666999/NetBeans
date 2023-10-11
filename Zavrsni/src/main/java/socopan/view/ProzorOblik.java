@@ -4,6 +4,8 @@
  */
 package socopan.view;
 
+import javax.swing.DefaultListModel;
+import socopan.controller.ObradaOblik;
 import socopan.model.Oblik;
 import socopan.util.Alati;
 
@@ -11,15 +13,26 @@ import socopan.util.Alati;
  *
  * @author Mili
  */
-public class ProzorOblici extends javax.swing.JFrame {
+public class ProzorOblik extends javax.swing.JFrame {
+    
+    private ObradaOblik obrada;
 
     /**
      * Creates new form ProzorOblici
      */
-    public ProzorOblici() {
+    public ProzorOblik() {
         initComponents();
+        obrada = new ObradaOblik();
         setTitle(Alati.NAZIV_APP + " | Oblici");
+        ucitaj();
     }
+    
+     private void ucitaj() {
+         DefaultListModel<Oblik> m = new DefaultListModel<>();
+         m.addAll(obrada.read());
+         lstPodaci.setModel(m);
+         lstPodaci.repaint();
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,6 +49,7 @@ public class ProzorOblici extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lstPodaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(lstPodaci);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -61,4 +75,6 @@ public class ProzorOblici extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Oblik> lstPodaci;
     // End of variables declaration//GEN-END:variables
+
+   
 }
