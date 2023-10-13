@@ -32,14 +32,7 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="txtObrisi" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnDodaj" pref="78" max="32767" attributes="0"/>
-                          <Component id="btnObrisi" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="btnDodaj" min="-2" pref="78" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -47,6 +40,16 @@
                           <Component id="txtPromjeni" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnPromjeni" pref="84" max="32767" attributes="0"/>
+                              <EmptySpace pref="110" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtObrisi" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnObrisi" max="32767" attributes="0"/>
                               <EmptySpace pref="110" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -72,7 +75,7 @@
               <Component id="txtObrisi" min="-2" pref="24" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnObrisi" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

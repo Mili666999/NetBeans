@@ -5,9 +5,11 @@
 package socopan.view;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import socopan.controller.ObradaOblik;
 import socopan.model.Oblik;
 import socopan.util.Alati;
+import socopan.util.SocopanException;
 
 /**
  *
@@ -45,12 +47,53 @@ public class ProzorOblik extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
+        txtDodaj = new javax.swing.JTextField();
+        btnDodaj = new javax.swing.JButton();
+        txtPromjeni = new javax.swing.JTextField();
+        btnPromjeni = new javax.swing.JButton();
+        txtObrisi = new javax.swing.JTextField();
+        btnObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lstPodaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPodaciValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstPodaci);
+
+        txtDodaj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnDodaj.setText("Dodaj");
+        btnDodaj.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDodaj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajActionPerformed(evt);
+            }
+        });
+
+        txtPromjeni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnPromjeni.setText("Promjeni");
+        btnPromjeni.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPromjeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromjeniActionPerformed(evt);
+            }
+        });
+
+        txtObrisi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnObrisi.setText("Obriši");
+        btnObrisi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,22 +101,130 @@ public class ProzorOblik extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 200, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtDodaj)
+                        .addGap(12, 12, 12))
+                    .addComponent(txtObrisi)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnDodaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPromjeni, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnPromjeni, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(txtDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDodaj)
+                .addGap(48, 48, 48)
+                .addComponent(txtPromjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnPromjeni)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnObrisi)
+                .addGap(36, 36, 36))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        obrada.setEntitet(new Oblik());
+        popuniModel();
+        try {
+            obrada.create();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
+    }//GEN-LAST:event_btnDodajActionPerformed
+
+    private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+
+        var e = lstPodaci.getSelectedValue();
+
+        obrada.setEntitet(e);
+        popuniModel();
+
+        try {
+            obrada.update();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
+    }//GEN-LAST:event_btnPromjeniActionPerformed
+
+    private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+
+        var e = lstPodaci.getSelectedValue();
+
+        if(JOptionPane.showConfirmDialog(getRootPane(), e.getNaziv(), "Sigurno obrisati?", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
+            return;
+        }
+
+        obrada.setEntitet(e);
+
+        try {
+            obrada.delete();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
+    }//GEN-LAST:event_btnObrisiActionPerformed
+
+    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
+                if(evt.getValueIsAdjusting()){
+            return;
+        }
+        
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        
+        obrada.setEntitet(lstPodaci.getSelectedValue());
+        
+        popuniView();
+        
+    }//GEN-LAST:event_lstPodaciValueChanged
+        private void popuniModel(){
+        var e = obrada.getEntitet();
+        e.setNaziv(txtDodaj.getText()); 
+    }
+    
+    private void popuniView(){
+        var e = obrada.getEntitet();
+        
+        txtPromjeni.setText(e.getNaziv());
+        txtObrisi.setText(e.getNaziv());
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnObrisi;
+    private javax.swing.JButton btnPromjeni;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Oblik> lstPodaci;
+    private javax.swing.JTextField txtDodaj;
+    private javax.swing.JTextField txtObrisi;
+    private javax.swing.JTextField txtPromjeni;
     // End of variables declaration//GEN-END:variables
 
    

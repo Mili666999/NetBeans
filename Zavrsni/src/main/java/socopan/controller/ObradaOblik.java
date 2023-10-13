@@ -34,7 +34,7 @@ public class ObradaOblik extends Obrada<Oblik>{
 
     @Override
     protected void kontrolaPromjena() throws SocopanException {
-        kontrolaUnos();
+        kontrolaNaziv();
     }
 
     @Override
@@ -50,6 +50,13 @@ public class ObradaOblik extends Obrada<Oblik>{
         }
         if(entitet.getNaziv().isEmpty()){
             throw new SocopanException("Naziv oblika ne smije biti prazan");
+        }
+        
+        List<Oblik> lista = session.createQuery("from Oblik o where o.naziv like :uvjet", Oblik.class)
+                .setParameter("uvjet", entitet.getNaziv() + "%").list();
+        
+        if(lista != null && !lista.isEmpty()){
+        throw new SocopanException("Taj naziv se već koristi");
         }
     }
     
