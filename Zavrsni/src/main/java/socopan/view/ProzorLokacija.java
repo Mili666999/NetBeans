@@ -149,7 +149,8 @@ public class ProzorLokacija extends javax.swing.JFrame {
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Lokacija());
-        popuniModel();
+        var e = obrada.getEntitet();
+        e.setNaziv(txtDodaj.getText());
         try {
             obrada.create();
             ucitaj();
@@ -173,6 +174,7 @@ public class ProzorLokacija extends javax.swing.JFrame {
             ucitaj();
         } catch (SocopanException se) {
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+            obrada.refresh();
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
@@ -213,7 +215,7 @@ public class ProzorLokacija extends javax.swing.JFrame {
     }//GEN-LAST:event_lstPodaciValueChanged
     private void popuniModel(){
         var e = obrada.getEntitet();
-        e.setNaziv(txtDodaj.getText()); 
+        e.setNaziv(txtPromjeni.getText()); 
     }
     
     private void popuniView(){
