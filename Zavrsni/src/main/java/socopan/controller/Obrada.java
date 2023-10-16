@@ -60,7 +60,7 @@ public abstract class Obrada<T extends Entitet>{
     }
     
     private void kontrolaNull() throws SocopanException{
-        if(entitet==null){
+        if(entitet == null){
             throw new SocopanException("Entitet je null");
         }    
     }

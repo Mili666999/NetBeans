@@ -26,6 +26,19 @@ public class ObradaArtikal extends Obrada<Artikal>{
     public List<Artikal> read() {
         return session.createQuery("from Artikal", Artikal.class).list();
     }
+    
+//    public List<Artikal> read(String uvjet){
+//        return read(uvjet);
+//    }
+    
+    public List<Artikal> read(String uvjet){
+        uvjet = uvjet==null ? "" : uvjet;
+        uvjet = uvjet.trim();
+        uvjet = "%" + uvjet + "%";
+        
+        List<Artikal> lista = session.createQuery("from Artikal a" + "where a.naziv like :uvjet", Artikal.class).setParameter("uvjet", uvjet).list();
+        return lista;
+    }
 
     @Override
     protected void kontrolaUnos() throws SocopanException {
