@@ -4,21 +4,26 @@
  */
 package socopan.view;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import socopan.controller.ObradaArtikal;
 import socopan.model.Artikal;
+import socopan.model.Kategorija;
 import socopan.model.Lokacija;
 import socopan.model.Oblik;
 import socopan.util.Alati;
+import socopan.util.SocopanException;
 
 /**
  *
  * @author Mili
  */
-public class GlavniProzor extends javax.swing.JFrame {
+public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucelje {
     
     private ObradaArtikal obrada;
+    private DecimalFormat df;
 
     /**
      * Creates new form GlavniProzor
@@ -28,14 +33,6 @@ public class GlavniProzor extends javax.swing.JFrame {
         obrada = new ObradaArtikal();
         setTitle(Alati.NAZIV_APP);
         ucitaj();
-    }
-    
-    private void ucitaj() {
-        DefaultListModel<Artikal> m = new DefaultListModel<>();
-        m.addAll(obrada.read());
-        lstPodaci.setModel(m);
-        lstPodaci.repaint();
-        
     }
 
     /**
@@ -72,7 +69,7 @@ public class GlavniProzor extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtKolicinaUkupna = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtKategorija2 = new javax.swing.JTextField();
+        txtKategorija = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -81,10 +78,15 @@ public class GlavniProzor extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lstPodaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        lstPodaci.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstPodaciValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(lstPodaci);
 
         btnLijekovi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -194,8 +196,8 @@ public class GlavniProzor extends javax.swing.JFrame {
         jLabel6.setText("Kategorija");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtKategorija2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtKategorija2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtKategorija.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtKategorija.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jMenu1.setText("Menu");
 
@@ -263,7 +265,7 @@ public class GlavniProzor extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtKategorija2, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -338,7 +340,7 @@ public class GlavniProzor extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKategorija2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,7 +395,14 @@ public class GlavniProzor extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbOblikActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        // TODO add your handling code here:
+        obrada.setEntitet(new Artikal());
+        popuniModel();
+        try {
+            obrada.create();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
@@ -411,6 +420,55 @@ public class GlavniProzor extends javax.swing.JFrame {
         btnTraziActionPerformed(null);
     }//GEN-LAST:event_txtTraziKeyPressed
 
+    private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
+        if(evt.getValueIsAdjusting()){
+            return;
+        }
+        
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        
+        obrada.setEntitet(lstPodaci.getSelectedValue());
+        
+        popuniView();
+    }//GEN-LAST:event_lstPodaciValueChanged
+    @Override
+    public void ucitaj() {
+        DefaultListModel<Artikal> m = new DefaultListModel<>();
+        m.addAll(obrada.read());
+        lstPodaci.setModel(m);
+        lstPodaci.repaint();
+    }
+    
+    @Override
+    public void popuniModel() {
+        var e = obrada.getEntitet();
+        e.setNaziv(txtArtikal.getText());
+        
+        try {
+            e.setKolicinaUkupna(BigDecimal.valueOf(df.parse(txtKolicinaUkupna.getText()).doubleValue()));
+        } catch (Exception ex) {
+            e.setKolicinaUkupna(null);
+        }
+        
+        //e.setKategorija((Kategorija)txtKategorija.getSelectedText());
+        //e.setOblik
+        //e.setLokacija
+        //e.setKolicinaNaLokaciji
+    }
+
+    @Override
+    public void popuniView() {
+        var e = obrada.getEntitet();
+        txtArtikal.setText(e.getNaziv());
+        txtKolicinaUkupna.setText(e.getKolicinaUkupna().toString());
+        txtKategorija.setText(e.getKategorija().toString());
+        cmbOblik.setSelectedItem(e.getAoli().toString());
+        cmbLokacija.setSelectedItem(e.getAoli().toString());
+        txtKolocinaNaLokaciji.setText(e.getKolicinaUkupna().toString());
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnDezinfekcija;
@@ -442,7 +500,7 @@ public class GlavniProzor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Artikal> lstPodaci;
     private javax.swing.JTextField txtArtikal;
-    private javax.swing.JTextField txtKategorija2;
+    private javax.swing.JTextField txtKategorija;
     private javax.swing.JTextField txtKolicinaUkupna;
     private javax.swing.JTextField txtKolocinaNaLokaciji;
     private javax.swing.JTextField txtTrazi;

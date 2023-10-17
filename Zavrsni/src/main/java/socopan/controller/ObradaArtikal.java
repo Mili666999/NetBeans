@@ -4,9 +4,11 @@
  */
 package socopan.controller;
 
+import java.text.Collator;
 import socopan.model.Artikal;
 import socopan.util.SocopanException;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -27,16 +29,17 @@ public class ObradaArtikal extends Obrada<Artikal>{
         return session.createQuery("from Artikal", Artikal.class).list();
     }
     
-//    public List<Artikal> read(String uvjet){
-//        return read(uvjet);
-//    }
     
     public List<Artikal> read(String uvjet){
         uvjet = uvjet==null ? "" : uvjet;
         uvjet = uvjet.trim();
         uvjet = "%" + uvjet + "%";
         
-        List<Artikal> lista = session.createQuery("from Artikal a" + "where a.naziv like :uvjet", Artikal.class).setParameter("uvjet", uvjet).list();
+        List<Artikal> lista = session.createQuery("from Artikal a where a.naziv like :uvjet", Artikal.class).setParameter("uvjet", uvjet).list();
+        
+        Collator spCollator = Collator.getInstance(Locale.of("hr", "HR"));
+        lista.sort((e1, e2)-> spCollator.compare(e1.getNaziv(), e2.getNaziv()));
+        
         return lista;
     }
 

@@ -15,7 +15,7 @@ import socopan.util.SocopanException;
  *
  * @author Mili
  */
-public class ProzorLokacija extends javax.swing.JFrame {
+public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSucelje{
     
     private ObradaLokacija obrada;
 
@@ -27,13 +27,6 @@ public class ProzorLokacija extends javax.swing.JFrame {
         obrada = new ObradaLokacija();
         setTitle(Alati.NAZIV_APP + " | Lokacije");
         ucitaj();
-    }
-    
-    private void ucitaj(){
-        DefaultListModel<Lokacija> m = new DefaultListModel<>();
-        m.addAll(obrada.read());
-        lstPodaci.setModel(m);
-        lstPodaci.repaint();
     }
 
     /**
@@ -213,18 +206,28 @@ public class ProzorLokacija extends javax.swing.JFrame {
         popuniView();
         
     }//GEN-LAST:event_lstPodaciValueChanged
-    private void popuniModel(){
+    @Override
+    public void ucitaj(){
+        DefaultListModel<Lokacija> m = new DefaultListModel<>();
+        m.addAll(obrada.read());
+        lstPodaci.setModel(m);
+        lstPodaci.repaint();
+    }
+    
+    @Override
+    public void popuniModel(){
         var e = obrada.getEntitet();
         e.setNaziv(txtPromjeni.getText()); 
     }
     
-    private void popuniView(){
+    @Override
+    public void popuniView(){
         var e = obrada.getEntitet();
-        
         txtPromjeni.setText(e.getNaziv());
         txtObrisi.setText(e.getNaziv());
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnObrisi;

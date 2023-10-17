@@ -15,7 +15,7 @@ import socopan.util.SocopanException;
  *
  * @author Mili
  */
-public class ProzorOblik extends javax.swing.JFrame {
+public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelje{
     
     private ObradaOblik obrada;
 
@@ -28,13 +28,6 @@ public class ProzorOblik extends javax.swing.JFrame {
         setTitle(Alati.NAZIV_APP + " | Oblici");
         ucitaj();
     }
-    
-     private void ucitaj() {
-         DefaultListModel<Oblik> m = new DefaultListModel<>();
-         m.addAll(obrada.read());
-         lstPodaci.setModel(m);
-         lstPodaci.repaint();
-     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,7 +185,7 @@ public class ProzorOblik extends javax.swing.JFrame {
     }//GEN-LAST:event_btnObrisiActionPerformed
 
     private void lstPodaciValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstPodaciValueChanged
-                if(evt.getValueIsAdjusting()){
+        if(evt.getValueIsAdjusting()){
             return;
         }
         
@@ -205,14 +198,23 @@ public class ProzorOblik extends javax.swing.JFrame {
         popuniView();
         
     }//GEN-LAST:event_lstPodaciValueChanged
-        private void popuniModel(){
-        var e = obrada.getEntitet();
-        e.setNaziv(txtPromjeni.getText()); 
+    @Override
+    public void ucitaj() {
+         DefaultListModel<Oblik> m = new DefaultListModel<>();
+         m.addAll(obrada.read());
+         lstPodaci.setModel(m);
+         lstPodaci.repaint();
     }
     
-    private void popuniView(){
+    @Override
+    public void popuniModel(){
         var e = obrada.getEntitet();
-        
+        e.setNaziv(txtPromjeni.getText());
+    }
+    
+    @Override
+    public void popuniView(){
+        var e = obrada.getEntitet();
         txtPromjeni.setText(e.getNaziv());
         txtObrisi.setText(e.getNaziv());
     }
