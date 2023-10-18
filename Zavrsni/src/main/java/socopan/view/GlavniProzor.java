@@ -4,10 +4,14 @@
  */
 package socopan.view;
 
+import java.awt.Color;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
 import socopan.controller.ObradaArtikal;
 import socopan.model.Artikal;
 import socopan.model.Kategorija;
@@ -34,6 +38,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         setTitle(Alati.NAZIV_APP);
         ucitaj();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +74,10 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jLabel5 = new javax.swing.JLabel();
         txtKolicinaUkupna = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtKategorija = new javax.swing.JTextField();
+        cmbKategorija = new javax.swing.JComboBox<>();
+        btnDodajOblik = new javax.swing.JButton();
+        btnDodajLokaciju = new javax.swing.JButton();
+        btnObrisiUnos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -78,7 +86,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         lstPodaci.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lstPodaci.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -91,18 +100,43 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         btnLijekovi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLijekovi.setLabel("Lijekovi");
+        btnLijekovi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLijekoviActionPerformed(evt);
+            }
+        });
 
         btnInfuzije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnInfuzije.setLabel("Infuzije");
+        btnInfuzije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInfuzijeActionPerformed(evt);
+            }
+        });
 
         btnEndoskopije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEndoskopije.setLabel("Endoskopije");
+        btnEndoskopije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndoskopijeActionPerformed(evt);
+            }
+        });
 
         btnDezinfekcija.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDezinfekcija.setLabel("Dezinfekcija");
+        btnDezinfekcija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDezinfekcijaActionPerformed(evt);
+            }
+        });
 
         btnOstriPredmeti.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOstriPredmeti.setLabel("Oštri predmeti");
+        btnOstriPredmeti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOstriPredmetiActionPerformed(evt);
+            }
+        });
 
         btnRazno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRazno.setLabel("Razno");
@@ -114,6 +148,11 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         btnSveKategorije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSveKategorije.setLabel("Sve kategorije");
+        btnSveKategorije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSveKategorijeActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Oblik");
@@ -156,6 +195,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         btnObriši.setText("Obriši");
         btnObriši.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        cmbOblik.setActionCommand("");
         cmbOblik.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         cmbOblik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,6 +204,11 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         });
 
         cmbLokacija.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbLokacija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLokacijaActionPerformed(evt);
+            }
+        });
 
         txtTrazi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTrazi.addActionListener(new java.awt.event.ActionListener() {
@@ -196,8 +241,34 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jLabel6.setText("Kategorija");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtKategorija.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtKategorija.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbKategorija.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbKategorija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKategorijaActionPerformed(evt);
+            }
+        });
+
+        btnDodajOblik.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDodajOblik.setText("+");
+        btnDodajOblik.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDodajOblik.setVerifyInputWhenFocusTarget(false);
+        btnDodajOblik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajOblikActionPerformed(evt);
+            }
+        });
+
+        btnDodajLokaciju.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDodajLokaciju.setText("+");
+        btnDodajLokaciju.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDodajLokaciju.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDodajLokacijuActionPerformed(evt);
+            }
+        });
+
+        btnObrisiUnos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnObrisiUnos.setLabel("Obriši unos");
 
         jMenu1.setText("Menu");
 
@@ -246,8 +317,30 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnObrisiUnos, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnLijekovi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addComponent(btnInfuzije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnEndoskopije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(btnDezinfekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(20, 20, 20)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnOstriPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(btnRazno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(btnSveKategorije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,69 +348,52 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtArtikal, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbLokacija, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtKolicinaUkupna, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(12, 12, 12)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(cmbLokacija, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btnDodajLokaciju, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtKolocinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(12, 12, 12)
+                                        .addComponent(cmbOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnDodajOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtKolocinaNaLokaciji))))
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(cmbKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtKolicinaUkupna, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtArtikal, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
+                                .addGap(60, 60, 60)
                                 .addComponent(btnDodaj, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnPromjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(55, 55, 55))
+                                .addGap(60, 60, 60)
+                                .addComponent(btnPromjeni, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(144, 144, 144)
-                                .addComponent(btnObriši, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnLijekovi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInfuzije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEndoskopije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDezinfekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnOstriPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRazno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSveKategorije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGap(155, 155, 155)
+                                .addComponent(btnObriši, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 9, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnTrazi, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                     .addComponent(txtTrazi))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLijekovi)
                     .addComponent(btnInfuzije)
@@ -326,40 +402,44 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                     .addComponent(btnSveKategorije)
                     .addComponent(btnOstriPredmeti)
                     .addComponent(btnRazno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtArtikal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnObrisiUnos)
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKolicinaUkupna, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtArtikal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKolicinaUkupna, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cmbOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDodajOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmbLokacija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDodajLokaciju, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbLokacija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtKolocinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKolocinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDodaj)
                             .addComponent(btnPromjeni))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnObriši)))
-                .addContainerGap())
+                        .addGap(25, 25, 25)
+                        .addComponent(btnObriši))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
@@ -387,7 +467,11 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnRaznoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaznoActionPerformed
-        // TODO add your handling code here:
+        if(btnRazno.isSelected()){
+            btnRazno.setBackground(Color.green);
+        }else{
+            btnRazno.setBackground(null);
+        }
     }//GEN-LAST:event_btnRaznoActionPerformed
 
     private void cmbOblikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOblikActionPerformed
@@ -433,6 +517,77 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         
         popuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
+
+    private void cmbLokacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbLokacijaActionPerformed
+
+    private void cmbKategorijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategorijaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKategorijaActionPerformed
+
+    private void btnDodajLokacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajLokacijuActionPerformed
+        new ProzorLokacija().setVisible(true);
+    }//GEN-LAST:event_btnDodajLokacijuActionPerformed
+
+    private void btnDodajOblikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajOblikActionPerformed
+        new ProzorOblik().setVisible(true);
+    }//GEN-LAST:event_btnDodajOblikActionPerformed
+
+    private void btnLijekoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLijekoviActionPerformed
+        if(btnLijekovi.isSelected()){
+            btnLijekovi.setBackground(Color.green);
+        }else{
+            btnLijekovi.setBackground(null);
+        }
+    }//GEN-LAST:event_btnLijekoviActionPerformed
+
+    private void btnInfuzijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfuzijeActionPerformed
+        if(btnInfuzije.isSelected()){
+            btnInfuzije.setBackground(Color.green);
+        }else{
+            btnInfuzije.setBackground(null);
+        }
+    }//GEN-LAST:event_btnInfuzijeActionPerformed
+
+    private void btnEndoskopijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndoskopijeActionPerformed
+        if(btnEndoskopije.isSelected()){
+            btnEndoskopije.setBackground(Color.green);
+        }else{
+            btnEndoskopije.setBackground(null);
+        }
+    }//GEN-LAST:event_btnEndoskopijeActionPerformed
+
+    private void btnDezinfekcijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDezinfekcijaActionPerformed
+        if(btnDezinfekcija.isSelected()){
+            btnDezinfekcija.setBackground(Color.green);
+        }else{
+            btnDezinfekcija.setBackground(null);
+        }
+    }//GEN-LAST:event_btnDezinfekcijaActionPerformed
+
+    private void btnOstriPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOstriPredmetiActionPerformed
+        if(btnOstriPredmeti.isSelected()){
+            btnOstriPredmeti.setBackground(Color.green);
+        }else{
+            btnOstriPredmeti.setBackground(null);
+        }
+    }//GEN-LAST:event_btnOstriPredmetiActionPerformed
+
+    private void btnSveKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSveKategorijeActionPerformed
+        List<JToggleButton> prekidaci;
+        prekidaci = new ArrayList<>();
+        prekidaci.add(btnDezinfekcija);
+        prekidaci.add(btnEndoskopije);
+        prekidaci.add(btnInfuzije);
+        prekidaci.add(btnLijekovi);
+        prekidaci.add(btnOstriPredmeti);
+        prekidaci.add(btnRazno);
+        for(JToggleButton prekidac : prekidaci){
+            prekidac.setSelected(false);
+            prekidac.setBackground(null);
+        }
+    }//GEN-LAST:event_btnSveKategorijeActionPerformed
     @Override
     public void ucitaj() {
         DefaultListModel<Artikal> m = new DefaultListModel<>();
@@ -463,7 +618,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         var e = obrada.getEntitet();
         txtArtikal.setText(e.getNaziv());
         txtKolicinaUkupna.setText(e.getKolicinaUkupna().toString());
-        txtKategorija.setText(e.getKategorija().toString());
+        cmbKategorija.setSelectedItem(e.getKategorija().toString());
         cmbOblik.setSelectedItem(e.getAoli().toString());
         cmbLokacija.setSelectedItem(e.getAoli().toString());
         txtKolocinaNaLokaciji.setText(e.getKolicinaUkupna().toString());
@@ -473,15 +628,19 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnDezinfekcija;
     private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnDodajLokaciju;
+    private javax.swing.JButton btnDodajOblik;
     private javax.swing.JToggleButton btnEndoskopije;
     private javax.swing.JToggleButton btnInfuzije;
     private javax.swing.JToggleButton btnLijekovi;
+    private javax.swing.JButton btnObrisiUnos;
     private javax.swing.JButton btnObriši;
     private javax.swing.JToggleButton btnOstriPredmeti;
     private javax.swing.JButton btnPromjeni;
     private javax.swing.JToggleButton btnRazno;
     private javax.swing.JButton btnSveKategorije;
     private javax.swing.JButton btnTrazi;
+    private javax.swing.JComboBox<String> cmbKategorija;
     private javax.swing.JComboBox<Lokacija> cmbLokacija;
     private javax.swing.JComboBox<Oblik> cmbOblik;
     private javax.swing.JLabel jLabel1;
@@ -500,7 +659,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Artikal> lstPodaci;
     private javax.swing.JTextField txtArtikal;
-    private javax.swing.JTextField txtKategorija;
     private javax.swing.JTextField txtKolicinaUkupna;
     private javax.swing.JTextField txtKolocinaNaLokaciji;
     private javax.swing.JTextField txtTrazi;
