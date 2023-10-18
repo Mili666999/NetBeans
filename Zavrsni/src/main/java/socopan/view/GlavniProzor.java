@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
@@ -38,6 +39,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         setTitle(Alati.NAZIV_APP);
         ucitaj();
     }
+    
 
 
     /**
@@ -269,6 +271,11 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         btnObrisiUnos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnObrisiUnos.setLabel("Obriši unos");
+        btnObrisiUnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnObrisiUnosActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Menu");
 
@@ -588,6 +595,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             prekidac.setBackground(null);
         }
     }//GEN-LAST:event_btnSveKategorijeActionPerformed
+
+    private void btnObrisiUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiUnosActionPerformed
+        txtArtikal.setText("");
+        txtKolicinaUkupna.setText("");
+        txtKolocinaNaLokaciji.setText("");
+    }//GEN-LAST:event_btnObrisiUnosActionPerformed
     @Override
     public void ucitaj() {
         DefaultListModel<Artikal> m = new DefaultListModel<>();

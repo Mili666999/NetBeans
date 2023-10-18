@@ -614,6 +614,9 @@
         </Property>
         <Property name="label" type="java.lang.String" value="Obri&#x161;i unos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnObrisiUnosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
