@@ -151,18 +151,23 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
+        txtPromjeni.setText("");
+        txtObrisi.setText("");
         obrada.setEntitet(new Oblik());
         var e = obrada.getEntitet();
         e.setNaziv(txtDodaj.getText());
         try {
             obrada.create();
             ucitaj();
+            txtDodaj.setText("");
         } catch (SocopanException se) {
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
         }
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
+        txtDodaj.setText("");
+        txtObrisi.setText("");
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
@@ -175,6 +180,7 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         try {
             obrada.update();
             ucitaj();
+            txtPromjeni.setText("");
         } catch (SocopanException se) {
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
             obrada.refresh();
@@ -182,7 +188,12 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
+        txtDodaj.setText("");
+        txtPromjeni.setText("");
         if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        if(txtObrisi.getText().equals("")){
             return;
         }
 
@@ -197,6 +208,7 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         try {
             obrada.delete();
             ucitaj();
+            txtObrisi.setText("");
         } catch (SocopanException se) {
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
         }
@@ -214,13 +226,14 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         obrada.setEntitet(lstPodaci.getSelectedValue());
         
         popuniView();
-        
+        txtObrisi.setText("");
     }//GEN-LAST:event_lstPodaciValueChanged
 
     private void lstPodaciMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstPodaciMouseClicked
         var e = obrada.getEntitet();
         if(evt.getClickCount()==2){
             txtObrisi.setText(e.getNaziv());
+            txtPromjeni.setText("");
         }
     }//GEN-LAST:event_lstPodaciMouseClicked
     @Override

@@ -14,6 +14,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import socopan.controller.ObradaArtikal;
+import socopan.controller.ObradaKategorija;
+import socopan.controller.ObradaLokacija;
+import socopan.controller.ObradaOblik;
+import socopan.model.AOL;
 import socopan.model.Artikal;
 import socopan.model.Kategorija;
 import socopan.model.Lokacija;
@@ -37,8 +41,65 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         initComponents();
         obrada = new ObradaArtikal();
         setTitle(Alati.NAZIV_APP);
+        ucitajKategorije();
+        ucitajOblike();
+        ucitajLokacije();
+        obrisiUnos();
         ucitaj();
     }
+    
+      private void ucitajKategorije(){
+        DefaultComboBoxModel<Kategorija> m = new DefaultComboBoxModel<>();
+       
+        Kategorija k = new Kategorija();
+        k.setId(0);
+        k.setNaziv("Odaberite kategoriju");
+        m.addElement(k);
+       
+        m.addAll(new ObradaKategorija().read());
+        cmbKategorije.setModel(m);
+        cmbKategorije.repaint();
+       
+    }
+   
+    private void ucitajOblike(){
+        DefaultComboBoxModel<Oblik> m = new DefaultComboBoxModel<>();
+       
+        Oblik o = new Oblik();
+        o.setId(0);
+        o.setNaziv("Odaberite oblik");
+        m.addElement(o);
+       
+        m.addAll(new ObradaOblik().read());
+        cmbOblici.setModel(m);
+        cmbOblici.repaint();
+       
+    }
+   
+    private void ucitajLokacije(){
+        DefaultComboBoxModel<Lokacija> m = new DefaultComboBoxModel<>();
+       
+        Lokacija l = new Lokacija();
+        l.setId(0);
+        l.setNaziv("Odaberite lokaciju");
+        m.addElement(l);
+       
+        m.addAll(new ObradaLokacija().read());
+        cmbLokacije.setModel(m);
+        cmbLokacije.repaint();
+       
+    }
+    
+    private void obrisiUnos(){
+        txtArtikal.setText("");
+        txtKolicinaUkupna.setText("");
+        txtKolocinaNaLokaciji.setText("");
+        ucitajKategorije();
+        ucitajOblike();
+        ucitajLokacije();
+    
+    }
+    
     
 
 
@@ -69,14 +130,14 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObriši = new javax.swing.JButton();
-        cmbOblik = new javax.swing.JComboBox<>();
-        cmbLokacija = new javax.swing.JComboBox<>();
+        cmbOblici = new javax.swing.JComboBox<>();
+        cmbLokacije = new javax.swing.JComboBox<>();
         txtTrazi = new javax.swing.JTextField();
         btnTrazi = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtKolicinaUkupna = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        cmbKategorija = new javax.swing.JComboBox<>();
+        cmbKategorije = new javax.swing.JComboBox<>();
         btnDodajOblik = new javax.swing.JButton();
         btnDodajLokaciju = new javax.swing.JButton();
         btnObrisiUnos = new javax.swing.JButton();
@@ -196,19 +257,24 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         btnObriši.setText("Obriši");
         btnObriši.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        cmbOblik.setActionCommand("");
-        cmbOblik.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbOblik.addActionListener(new java.awt.event.ActionListener() {
+        btnObriši.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbOblikActionPerformed(evt);
+                btnObrišiActionPerformed(evt);
             }
         });
 
-        cmbLokacija.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbLokacija.addActionListener(new java.awt.event.ActionListener() {
+        cmbOblici.setActionCommand("");
+        cmbOblici.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbOblici.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbLokacijaActionPerformed(evt);
+                cmbObliciActionPerformed(evt);
+            }
+        });
+
+        cmbLokacije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbLokacije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLokacijeActionPerformed(evt);
             }
         });
 
@@ -243,10 +309,10 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jLabel6.setText("Kategorija");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        cmbKategorija.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbKategorija.addActionListener(new java.awt.event.ActionListener() {
+        cmbKategorije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbKategorije.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKategorijaActionPerformed(evt);
+                cmbKategorijeActionPerformed(evt);
             }
         });
 
@@ -361,20 +427,20 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                                         .addGap(12, 12, 12)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cmbLokacija, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cmbLokacije, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnDodajLokaciju, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(txtKolocinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(12, 12, 12)
-                                        .addComponent(cmbOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cmbOblici, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnDodajOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(12, 12, 12)
-                                        .addComponent(cmbKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cmbKategorije, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(12, 12, 12)
@@ -423,16 +489,16 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbKategorija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbKategorije, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbOblici, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDodajOblik, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbLokacija, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbLokacije, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDodajLokaciju, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
@@ -470,7 +536,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        // TODO add your handling code here:
+        obrisiUnos();
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnRaznoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaznoActionPerformed
@@ -481,9 +547,9 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
     }//GEN-LAST:event_btnRaznoActionPerformed
 
-    private void cmbOblikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOblikActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbOblikActionPerformed
+    private void cmbObliciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObliciActionPerformed
+        
+    }//GEN-LAST:event_cmbObliciActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Artikal());
@@ -494,6 +560,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         } catch (SocopanException se) {
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
         }
+        obrisiUnos();
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
@@ -515,23 +582,21 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         if(evt.getValueIsAdjusting()){
             return;
         }
-        
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
-        
         obrada.setEntitet(lstPodaci.getSelectedValue());
         
         popuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
 
-    private void cmbLokacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbLokacijaActionPerformed
+    private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
+        
+    }//GEN-LAST:event_cmbLokacijeActionPerformed
 
-    private void cmbKategorijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategorijaActionPerformed
+    private void cmbKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategorijeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKategorijaActionPerformed
+    }//GEN-LAST:event_cmbKategorijeActionPerformed
 
     private void btnDodajLokacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajLokacijuActionPerformed
         new ProzorLokacija().setVisible(true);
@@ -597,10 +662,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnSveKategorijeActionPerformed
 
     private void btnObrisiUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiUnosActionPerformed
-        txtArtikal.setText("");
-        txtKolicinaUkupna.setText("");
-        txtKolocinaNaLokaciji.setText("");
+        obrisiUnos();
     }//GEN-LAST:event_btnObrisiUnosActionPerformed
+
+    private void btnObrišiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrišiActionPerformed
+        obrisiUnos();
+    }//GEN-LAST:event_btnObrišiActionPerformed
     @Override
     public void ucitaj() {
         DefaultListModel<Artikal> m = new DefaultListModel<>();
@@ -620,21 +687,20 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             e.setKolicinaUkupna(null);
         }
         
-        //e.setKategorija((Kategorija)txtKategorija.getSelectedText());
-        //e.setOblik
-        //e.setLokacija
-        //e.setKolicinaNaLokaciji
+        e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());
+        
     }
 
     @Override
     public void popuniView() {
         var e = obrada.getEntitet();
+       
         txtArtikal.setText(e.getNaziv());
         txtKolicinaUkupna.setText(e.getKolicinaUkupna().toString());
-        cmbKategorija.setSelectedItem(e.getKategorija().toString());
-        cmbOblik.setSelectedItem(e.getAoli().toString());
-        cmbLokacija.setSelectedItem(e.getAoli().toString());
-        txtKolocinaNaLokaciji.setText(e.getKolicinaUkupna().toString());
+        cmbKategorije.setSelectedItem(e.getKategorija());
+        
+        DefaultListModel<AOL> m = new DefaultListModel<>();
+        m.addAll(e.getAoli());
     }
     
 
@@ -653,9 +719,9 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private javax.swing.JToggleButton btnRazno;
     private javax.swing.JButton btnSveKategorije;
     private javax.swing.JButton btnTrazi;
-    private javax.swing.JComboBox<String> cmbKategorija;
-    private javax.swing.JComboBox<Lokacija> cmbLokacija;
-    private javax.swing.JComboBox<Oblik> cmbOblik;
+    private javax.swing.JComboBox<Kategorija> cmbKategorije;
+    private javax.swing.JComboBox<Lokacija> cmbLokacije;
+    private javax.swing.JComboBox<Oblik> cmbOblici;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
