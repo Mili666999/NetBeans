@@ -2,11 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package socopan.controller;
+package socopan.util;
 
 import java.text.Collator;
 import java.util.List;
 import java.util.Locale;
+import socopan.controller.Obrada;
 import socopan.model.Artikal;
 import socopan.util.SocopanException;
 
@@ -14,13 +15,13 @@ import socopan.util.SocopanException;
  *
  * @author Mili
  */
-public class ObradaFilter extends Obrada<Artikal>{
+public class FilterKategorija extends Obrada<Artikal>{
 
-    public ObradaFilter() {
+    public FilterKategorija() {
         super();
     }
     
-    public ObradaFilter(Artikal a){
+    public FilterKategorija(Artikal a){
         super(a);
     }
 

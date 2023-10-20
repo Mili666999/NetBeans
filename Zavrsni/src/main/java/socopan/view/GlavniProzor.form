@@ -83,15 +83,15 @@
                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                       <Component id="btnObrisiUnos" min="-2" pref="248" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="btnLijekovi" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="tglLijekovi" min="-2" pref="106" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="btnInfuzije" min="-2" pref="106" max="-2" attributes="0"/>
+                          <Component id="tglInfuzije" min="-2" pref="106" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="btnEndoskopije" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="tglEndoskopije" min="-2" pref="106" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="btnDezinfekcija" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="tglDezinfekcija" min="-2" pref="106" max="-2" attributes="0"/>
                               </Group>
                               <Component id="txtTrazi" min="-2" pref="230" max="-2" attributes="0"/>
                           </Group>
@@ -99,9 +99,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnTrazi" min="-2" pref="106" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="btnOstriPredmeti" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="tglOstriPredmeti" min="-2" pref="106" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="btnRazno" min="-2" pref="106" max="-2" attributes="0"/>
+                                  <Component id="tglRazno" min="-2" pref="106" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="btnSveKategorije" min="-2" pref="106" max="-2" attributes="0"/>
                               </Group>
@@ -180,13 +180,13 @@
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnLijekovi" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnInfuzije" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnEndoskopije" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnDezinfekcija" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglLijekovi" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglInfuzije" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglEndoskopije" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglDezinfekcija" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSveKategorije" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnOstriPredmeti" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRazno" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglOstriPredmeti" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tglRazno" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -268,7 +268,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JToggleButton" name="btnLijekovi">
+    <Component class="javax.swing.JToggleButton" name="tglLijekovi">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -278,10 +278,10 @@
         <Property name="label" type="java.lang.String" value="Lijekovi"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLijekoviActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglLijekoviActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnInfuzije">
+    <Component class="javax.swing.JToggleButton" name="tglInfuzije">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -291,10 +291,10 @@
         <Property name="label" type="java.lang.String" value="Infuzije"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInfuzijeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglInfuzijeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnEndoskopije">
+    <Component class="javax.swing.JToggleButton" name="tglEndoskopije">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -304,10 +304,10 @@
         <Property name="label" type="java.lang.String" value="Endoskopije"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEndoskopijeActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglEndoskopijeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnDezinfekcija">
+    <Component class="javax.swing.JToggleButton" name="tglDezinfekcija">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -317,10 +317,10 @@
         <Property name="label" type="java.lang.String" value="Dezinfekcija"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDezinfekcijaActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglDezinfekcijaActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnOstriPredmeti">
+    <Component class="javax.swing.JToggleButton" name="tglOstriPredmeti">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -330,10 +330,10 @@
         <Property name="label" type="java.lang.String" value="O&#x161;tri predmeti"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOstriPredmetiActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglOstriPredmetiActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JToggleButton" name="btnRazno">
+    <Component class="javax.swing.JToggleButton" name="tglRazno">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
@@ -343,7 +343,7 @@
         <Property name="label" type="java.lang.String" value="Razno"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRaznoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tglRaznoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSveKategorije">

@@ -4,6 +4,7 @@
 
 package socopan;
 
+import socopan.util.PocetniInsert;
 import socopan.view.SplashScreen;
 
 /**

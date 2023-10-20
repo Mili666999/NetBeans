@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import socopan.controller.ObradaArtikal;
-import socopan.controller.ObradaFilter;
+import socopan.util.FilterKategorija;
 import socopan.controller.ObradaKategorija;
 import socopan.controller.ObradaLokacija;
 import socopan.controller.ObradaOblik;
@@ -34,7 +34,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     
     private ObradaArtikal obrada;
     private DecimalFormat df;
-    private ObradaFilter obradaFilter;
+    private FilterKategorija obradaFilter;
 
     /**
      * Creates new form GlavniProzor
@@ -42,12 +42,13 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     public GlavniProzor() {
         initComponents();
         obrada = new ObradaArtikal();
-        obradaFilter = new ObradaFilter();
+        obradaFilter = new FilterKategorija();
         setTitle(Alati.NAZIV_APP);
         ucitajKategorije();
         ucitajOblike();
         ucitajLokacije();
         obrisiUnos();
+        gasiPrekidace(null);
         ucitaj();
     }
     
@@ -103,6 +104,24 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     
     }
     
+    private void gasiPrekidace(JToggleButton botun){
+        List<JToggleButton> prekidaci;
+        prekidaci = new ArrayList<>();
+        prekidaci.add(tglDezinfekcija);
+        prekidaci.add(tglEndoskopije);
+        prekidaci.add(tglInfuzije);
+        prekidaci.add(tglLijekovi);
+        prekidaci.add(tglOstriPredmeti);
+        prekidaci.add(tglRazno);
+        for(JToggleButton prekidac : prekidaci){
+            if(prekidac == botun){
+                continue;
+            }
+            prekidac.setSelected(false);
+            prekidac.setBackground(null);
+        }
+    }
+    
     
 
 
@@ -117,12 +136,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         jScrollPane1 = new javax.swing.JScrollPane();
         lstPodaci = new javax.swing.JList<>();
-        btnLijekovi = new javax.swing.JToggleButton();
-        btnInfuzije = new javax.swing.JToggleButton();
-        btnEndoskopije = new javax.swing.JToggleButton();
-        btnDezinfekcija = new javax.swing.JToggleButton();
-        btnOstriPredmeti = new javax.swing.JToggleButton();
-        btnRazno = new javax.swing.JToggleButton();
+        tglLijekovi = new javax.swing.JToggleButton();
+        tglInfuzije = new javax.swing.JToggleButton();
+        tglEndoskopije = new javax.swing.JToggleButton();
+        tglDezinfekcija = new javax.swing.JToggleButton();
+        tglOstriPredmeti = new javax.swing.JToggleButton();
+        tglRazno = new javax.swing.JToggleButton();
         btnSveKategorije = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -164,51 +183,51 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         });
         jScrollPane1.setViewportView(lstPodaci);
 
-        btnLijekovi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnLijekovi.setLabel("Lijekovi");
-        btnLijekovi.addActionListener(new java.awt.event.ActionListener() {
+        tglLijekovi.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tglLijekovi.setLabel("Lijekovi");
+        tglLijekovi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLijekoviActionPerformed(evt);
+                tglLijekoviActionPerformed(evt);
             }
         });
 
-        btnInfuzije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnInfuzije.setLabel("Infuzije");
-        btnInfuzije.addActionListener(new java.awt.event.ActionListener() {
+        tglInfuzije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tglInfuzije.setLabel("Infuzije");
+        tglInfuzije.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfuzijeActionPerformed(evt);
+                tglInfuzijeActionPerformed(evt);
             }
         });
 
-        btnEndoskopije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEndoskopije.setLabel("Endoskopije");
-        btnEndoskopije.addActionListener(new java.awt.event.ActionListener() {
+        tglEndoskopije.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tglEndoskopije.setLabel("Endoskopije");
+        tglEndoskopije.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEndoskopijeActionPerformed(evt);
+                tglEndoskopijeActionPerformed(evt);
             }
         });
 
-        btnDezinfekcija.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnDezinfekcija.setLabel("Dezinfekcija");
-        btnDezinfekcija.addActionListener(new java.awt.event.ActionListener() {
+        tglDezinfekcija.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tglDezinfekcija.setLabel("Dezinfekcija");
+        tglDezinfekcija.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDezinfekcijaActionPerformed(evt);
+                tglDezinfekcijaActionPerformed(evt);
             }
         });
 
-        btnOstriPredmeti.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnOstriPredmeti.setLabel("Oštri predmeti");
-        btnOstriPredmeti.addActionListener(new java.awt.event.ActionListener() {
+        tglOstriPredmeti.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tglOstriPredmeti.setLabel("Oštri predmeti");
+        tglOstriPredmeti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOstriPredmetiActionPerformed(evt);
+                tglOstriPredmetiActionPerformed(evt);
             }
         });
 
-        btnRazno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnRazno.setLabel("Razno");
-        btnRazno.addActionListener(new java.awt.event.ActionListener() {
+        tglRazno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tglRazno.setLabel("Razno");
+        tglRazno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRaznoActionPerformed(evt);
+                tglRaznoActionPerformed(evt);
             }
         });
 
@@ -398,23 +417,23 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btnObrisiUnos, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnLijekovi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tglLijekovi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(20, 20, 20)
-                            .addComponent(btnInfuzije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tglInfuzije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(20, 20, 20)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnEndoskopije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tglEndoskopije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
-                                    .addComponent(btnDezinfekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tglDezinfekcija, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(txtTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(20, 20, 20)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(btnTrazi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnOstriPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tglOstriPredmeti, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
-                                    .addComponent(btnRazno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tglRazno, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(20, 20, 20)
                                     .addComponent(btnSveKategorije, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
@@ -471,13 +490,13 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                     .addComponent(txtTrazi))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLijekovi)
-                    .addComponent(btnInfuzije)
-                    .addComponent(btnEndoskopije)
-                    .addComponent(btnDezinfekcija)
+                    .addComponent(tglLijekovi)
+                    .addComponent(tglInfuzije)
+                    .addComponent(tglEndoskopije)
+                    .addComponent(tglDezinfekcija)
                     .addComponent(btnSveKategorije)
-                    .addComponent(btnOstriPredmeti)
-                    .addComponent(btnRazno))
+                    .addComponent(tglOstriPredmeti)
+                    .addComponent(tglRazno))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -542,13 +561,19 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         obrisiUnos();
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
-    private void btnRaznoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRaznoActionPerformed
-        if(btnRazno.isSelected()){
-            btnRazno.setBackground(Color.green);
-        }else{
-            btnRazno.setBackground(null);
+    private void tglRaznoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglRaznoActionPerformed
+        if (tglRazno.isSelected()) {
+           gasiPrekidace(tglRazno);
+           tglRazno.setBackground(Color.GREEN);
+           DefaultListModel<Artikal> m = new DefaultListModel<>();
+           m.addAll(obradaFilter.read("Razno"));
+           lstPodaci.setModel(m);
+           lstPodaci.repaint();
+        } else {
+           tglRazno.setBackground(null);
+           ucitaj();
         }
-    }//GEN-LAST:event_btnRaznoActionPerformed
+    }//GEN-LAST:event_tglRaznoActionPerformed
 
     private void cmbObliciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObliciActionPerformed
         
@@ -567,6 +592,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+        gasiPrekidace(null);
         if(txtTrazi.getText().equals("")){
             ucitaj();
         }
@@ -581,6 +607,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_txtTraziActionPerformed
 
     private void txtTraziKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTraziKeyPressed
+        gasiPrekidace(null);
         btnTraziActionPerformed(null);
     }//GEN-LAST:event_txtTraziKeyPressed
 
@@ -612,63 +639,77 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         new ProzorOblik().setVisible(true);
     }//GEN-LAST:event_btnDodajOblikActionPerformed
 
-    private void btnLijekoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLijekoviActionPerformed
-        if (btnLijekovi.isSelected()) {
-           btnLijekovi.setBackground(Color.GREEN);
+    private void tglLijekoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglLijekoviActionPerformed
+        if (tglLijekovi.isSelected()) {
+           gasiPrekidace(tglLijekovi);
+           tglLijekovi.setBackground(Color.GREEN);
            DefaultListModel<Artikal> m = new DefaultListModel<>();
-           m.addAll(obradaFilter.read("Edric"));
+           m.addAll(obradaFilter.read("Lijekovi"));
            lstPodaci.setModel(m);
            lstPodaci.repaint();
         } else {
-           btnLijekovi.setBackground(null);
+           tglLijekovi.setBackground(null);
            ucitaj();
         }
-    }//GEN-LAST:event_btnLijekoviActionPerformed
-    private void btnInfuzijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfuzijeActionPerformed
-        if(btnInfuzije.isSelected()){
-            btnInfuzije.setBackground(Color.green);
-        }else{
-            btnInfuzije.setBackground(null);
+    }//GEN-LAST:event_tglLijekoviActionPerformed
+    private void tglInfuzijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglInfuzijeActionPerformed
+        if (tglInfuzije.isSelected()) {
+           gasiPrekidace(tglInfuzije);
+           tglInfuzije.setBackground(Color.GREEN);
+           DefaultListModel<Artikal> m = new DefaultListModel<>();
+           m.addAll(obradaFilter.read("Infuzije"));
+           lstPodaci.setModel(m);
+           lstPodaci.repaint();
+        } else {
+           tglInfuzije.setBackground(null);
+           ucitaj();
         }
-    }//GEN-LAST:event_btnInfuzijeActionPerformed
+    }//GEN-LAST:event_tglInfuzijeActionPerformed
 
-    private void btnEndoskopijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndoskopijeActionPerformed
-        if(btnEndoskopije.isSelected()){
-            btnEndoskopije.setBackground(Color.green);
-        }else{
-            btnEndoskopije.setBackground(null);
+    private void tglEndoskopijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglEndoskopijeActionPerformed
+        if (tglEndoskopije.isSelected()) {
+           gasiPrekidace(tglEndoskopije);
+           tglEndoskopije.setBackground(Color.GREEN);
+           DefaultListModel<Artikal> m = new DefaultListModel<>();
+           m.addAll(obradaFilter.read("Endoskopije"));
+           lstPodaci.setModel(m);
+           lstPodaci.repaint();
+        } else {
+           tglEndoskopije.setBackground(null);
+           ucitaj();
         }
-    }//GEN-LAST:event_btnEndoskopijeActionPerformed
+    }//GEN-LAST:event_tglEndoskopijeActionPerformed
 
-    private void btnDezinfekcijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDezinfekcijaActionPerformed
-        if(btnDezinfekcija.isSelected()){
-            btnDezinfekcija.setBackground(Color.green);
-        }else{
-            btnDezinfekcija.setBackground(null);
+    private void tglDezinfekcijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglDezinfekcijaActionPerformed
+        if (tglDezinfekcija.isSelected()) {
+           gasiPrekidace(tglDezinfekcija);
+           tglDezinfekcija.setBackground(Color.GREEN);
+           DefaultListModel<Artikal> m = new DefaultListModel<>();
+           m.addAll(obradaFilter.read("Dezinfekcija"));
+           lstPodaci.setModel(m);
+           lstPodaci.repaint();
+        } else {
+           tglDezinfekcija.setBackground(null);
+           ucitaj();
         }
-    }//GEN-LAST:event_btnDezinfekcijaActionPerformed
+    }//GEN-LAST:event_tglDezinfekcijaActionPerformed
 
-    private void btnOstriPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOstriPredmetiActionPerformed
-        if(btnOstriPredmeti.isSelected()){
-            btnOstriPredmeti.setBackground(Color.green);
-        }else{
-            btnOstriPredmeti.setBackground(null);
+    private void tglOstriPredmetiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglOstriPredmetiActionPerformed
+        if (tglOstriPredmeti.isSelected()) {
+           gasiPrekidace(tglOstriPredmeti);
+           tglOstriPredmeti.setBackground(Color.GREEN);
+           DefaultListModel<Artikal> m = new DefaultListModel<>();
+           m.addAll(obradaFilter.read("Oštri predmeti"));
+           lstPodaci.setModel(m);
+           lstPodaci.repaint();
+        } else {
+           tglOstriPredmeti.setBackground(null);
+           ucitaj();
         }
-    }//GEN-LAST:event_btnOstriPredmetiActionPerformed
+    }//GEN-LAST:event_tglOstriPredmetiActionPerformed
 
     private void btnSveKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSveKategorijeActionPerformed
-        List<JToggleButton> prekidaci;
-        prekidaci = new ArrayList<>();
-        prekidaci.add(btnDezinfekcija);
-        prekidaci.add(btnEndoskopije);
-        prekidaci.add(btnInfuzije);
-        prekidaci.add(btnLijekovi);
-        prekidaci.add(btnOstriPredmeti);
-        prekidaci.add(btnRazno);
-        for(JToggleButton prekidac : prekidaci){
-            prekidac.setSelected(false);
-            prekidac.setBackground(null);
-        }
+        gasiPrekidace(null);
         ucitaj();
     }//GEN-LAST:event_btnSveKategorijeActionPerformed
 
@@ -716,18 +757,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnDezinfekcija;
     private javax.swing.JButton btnDodaj;
     private javax.swing.JButton btnDodajLokaciju;
     private javax.swing.JButton btnDodajOblik;
-    private javax.swing.JToggleButton btnEndoskopije;
-    private javax.swing.JToggleButton btnInfuzije;
-    private javax.swing.JToggleButton btnLijekovi;
     private javax.swing.JButton btnObrisiUnos;
     private javax.swing.JButton btnObriši;
-    private javax.swing.JToggleButton btnOstriPredmeti;
     private javax.swing.JButton btnPromjeni;
-    private javax.swing.JToggleButton btnRazno;
     private javax.swing.JButton btnSveKategorije;
     private javax.swing.JButton btnTrazi;
     private javax.swing.JComboBox<Kategorija> cmbKategorije;
@@ -748,6 +783,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<Artikal> lstPodaci;
+    private javax.swing.JToggleButton tglDezinfekcija;
+    private javax.swing.JToggleButton tglEndoskopije;
+    private javax.swing.JToggleButton tglInfuzije;
+    private javax.swing.JToggleButton tglLijekovi;
+    private javax.swing.JToggleButton tglOstriPredmeti;
+    private javax.swing.JToggleButton tglRazno;
     private javax.swing.JTextField txtArtikal;
     private javax.swing.JTextField txtKolicinaUkupna;
     private javax.swing.JTextField txtKolocinaNaLokaciji;

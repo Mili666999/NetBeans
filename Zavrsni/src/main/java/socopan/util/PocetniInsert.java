@@ -74,15 +74,14 @@ public class PocetniInsert {
     }
 
     private void kreirajKategorije() {
-        Kategorija k;
-        for(int i=0;i<BROJ_KATEGORIJA;i++){
-            k = new Kategorija();
-            k.setNaziv(faker.dune().character());
+        String[] kateg ={"Lijekovi","Infuzije","Endoskopije","Dezinfekcija","Oštri predmeti","Razno"};
+        for(String kat : kateg){
+            Kategorija k = new Kategorija();
+            k.setNaziv(kat);
             session.persist(k);
             kategorije.add(k);
         }
     }
-    
     private void kreirajAole() {
         AOL a;
         for(int i=0;i<BROJ_AOLA;i++){
@@ -102,7 +101,7 @@ public class PocetniInsert {
             a = new Artikal();
             a.setNaziv(faker.medical().medicineName());
             a.setKolicinaUkupna(new BigDecimal(faker.number().numberBetween(1, 1000)));
-            a.setKategorija(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA-1)));
+            a.setKategorija(kategorije.get(faker.number().numberBetween(0, BROJ_KATEGORIJA)));
             session.persist(a);
             artikli.add(a);
         }
