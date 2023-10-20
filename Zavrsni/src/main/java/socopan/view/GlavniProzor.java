@@ -568,7 +568,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
         if(txtTrazi.getText().equals("")){
-            return;
+            ucitaj();
         }
         DefaultListModel<Artikal> m = new DefaultListModel<>();
         m.addAll(obrada.read(txtTrazi.getText()));
@@ -577,7 +577,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnTraziActionPerformed
 
     private void txtTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTraziActionPerformed
-        // TODO add your handling code here:
+        btnTraziActionPerformed(null);
     }//GEN-LAST:event_txtTraziActionPerformed
 
     private void txtTraziKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTraziKeyPressed
@@ -613,20 +613,17 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnDodajOblikActionPerformed
 
     private void btnLijekoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLijekoviActionPerformed
-        DefaultListModel<Artikal> m = new DefaultListModel<>();
-
         if (btnLijekovi.isSelected()) {
            btnLijekovi.setBackground(Color.GREEN);
+           DefaultListModel<Artikal> m = new DefaultListModel<>();
            m.addAll(obradaFilter.read("Edric"));
+           lstPodaci.setModel(m);
+           lstPodaci.repaint();
         } else {
            btnLijekovi.setBackground(null);
-           m.addAll(obradaFilter.read(""));
+           ucitaj();
         }
-
-        lstPodaci.setModel(m);
-        lstPodaci.repaint();
     }//GEN-LAST:event_btnLijekoviActionPerformed
-
     private void btnInfuzijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfuzijeActionPerformed
         if(btnInfuzije.isSelected()){
             btnInfuzije.setBackground(Color.green);
