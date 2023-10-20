@@ -29,13 +29,14 @@ public class ObradaArtikal extends Obrada<Artikal>{
         return session.createQuery("from Artikal", Artikal.class).list();
     }
     
-    
     public List<Artikal> read(String uvjet){
         uvjet = uvjet==null ? "" : uvjet;
         uvjet = uvjet.trim();
         uvjet = "%" + uvjet + "%";
         
-        List<Artikal> lista = session.createQuery("from Artikal a where a.naziv like :uvjet", Artikal.class).setParameter("uvjet", uvjet).list();
+        List<Artikal> lista;
+        lista = session.createQuery("from Artikal a where a.naziv like :uvjet", Artikal.class)
+                .setParameter("uvjet", uvjet).list();
         
         Collator spCollator = Collator.getInstance(Locale.of("hr", "HR"));
         lista.sort((e1, e2)-> spCollator.compare(e1.getNaziv(), e2.getNaziv()));

@@ -14,6 +14,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JToggleButton;
 import socopan.controller.ObradaArtikal;
+import socopan.controller.ObradaFilter;
 import socopan.controller.ObradaKategorija;
 import socopan.controller.ObradaLokacija;
 import socopan.controller.ObradaOblik;
@@ -33,6 +34,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     
     private ObradaArtikal obrada;
     private DecimalFormat df;
+    private ObradaFilter obradaFilter;
 
     /**
      * Creates new form GlavniProzor
@@ -40,6 +42,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     public GlavniProzor() {
         initComponents();
         obrada = new ObradaArtikal();
+        obradaFilter = new ObradaFilter();
         setTitle(Alati.NAZIV_APP);
         ucitajKategorije();
         ucitajOblike();
@@ -564,6 +567,9 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
+        if(txtTrazi.getText().equals("")){
+            return;
+        }
         DefaultListModel<Artikal> m = new DefaultListModel<>();
         m.addAll(obrada.read(txtTrazi.getText()));
         lstPodaci.setModel(m);
@@ -607,11 +613,18 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnDodajOblikActionPerformed
 
     private void btnLijekoviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLijekoviActionPerformed
-        if(btnLijekovi.isSelected()){
-            btnLijekovi.setBackground(Color.green);
-        }else{
-            btnLijekovi.setBackground(null);
+        DefaultListModel<Artikal> m = new DefaultListModel<>();
+
+        if (btnLijekovi.isSelected()) {
+           btnLijekovi.setBackground(Color.GREEN);
+           m.addAll(obradaFilter.read("Edric"));
+        } else {
+           btnLijekovi.setBackground(null);
+           m.addAll(obradaFilter.read(""));
         }
+
+        lstPodaci.setModel(m);
+        lstPodaci.repaint();
     }//GEN-LAST:event_btnLijekoviActionPerformed
 
     private void btnInfuzijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfuzijeActionPerformed
@@ -659,6 +672,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             prekidac.setSelected(false);
             prekidac.setBackground(null);
         }
+        ucitaj();
     }//GEN-LAST:event_btnSveKategorijeActionPerformed
 
     private void btnObrisiUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiUnosActionPerformed
