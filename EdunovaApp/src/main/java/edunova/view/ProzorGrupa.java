@@ -179,6 +179,12 @@ public class ProzorGrupa extends javax.swing.JFrame implements EdunovaViewSucelj
 
         jLabel3.setText("Predavač");
 
+        cmbPredavaci.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPredavaciActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Datum i vrijeme početka");
 
         lblPolazniciNaGrupi.setText("Polaznici na grupi");
@@ -358,6 +364,10 @@ public class ProzorGrupa extends javax.swing.JFrame implements EdunovaViewSucelj
         
         new ProzorUpravljanjePolaznicima(this).setVisible(true);
     }//GEN-LAST:event_btnUpravljajPolaznicimaActionPerformed
+
+    private void cmbPredavaciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPredavaciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbPredavaciActionPerformed
 
     @Override
     public void ucitaj() {

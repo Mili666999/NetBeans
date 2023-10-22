@@ -576,7 +576,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_tglRaznoActionPerformed
 
     private void cmbObliciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObliciActionPerformed
-        
+        ucitajOblike();
     }//GEN-LAST:event_cmbObliciActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
@@ -624,11 +624,11 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_lstPodaciValueChanged
 
     private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
-        
+        ucitajLokacije();
     }//GEN-LAST:event_cmbLokacijeActionPerformed
 
     private void cmbKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategorijeActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_cmbKategorijeActionPerformed
 
     private void btnDodajLokacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajLokacijuActionPerformed
@@ -718,6 +718,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnObrisiUnosActionPerformed
 
     private void btnObrišiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrišiActionPerformed
+        //
         obrisiUnos();
     }//GEN-LAST:event_btnObrišiActionPerformed
     @Override
@@ -726,6 +727,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         m.addAll(obrada.read());
         lstPodaci.setModel(m);
         lstPodaci.repaint();
+        
     }
     
     @Override
@@ -739,8 +741,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             e.setKolicinaUkupna(null);
         }
         
-        e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());
-        
+        e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());    
     }
 
     @Override
@@ -753,13 +754,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         
         List<Oblik> oblici = new ArrayList<>();
         for (AOL aol : e.getAoli()) {
-            System.out.println(aol.getOblik().getNaziv());
+            //System.out.println(aol.getOblik().getNaziv());
             if (!oblici.contains(aol.getOblik())) {
-                System.out.println("DODAO");
+                //System.out.println("DODAO");
                 oblici.add(aol.getOblik());
             }
         }
-
         DefaultComboBoxModel<Oblik> m = new DefaultComboBoxModel<>();
         m.addAll(oblici);
         cmbOblici.setModel(m);
@@ -769,6 +769,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             cmbOblici.setSelectedIndex(0);
         }
 
+        
         List<Lokacija> lokacije = new ArrayList<>();
         for (AOL aol : e.getAoli()) {
             //System.out.println(aol.getOblik().getNaziv());
@@ -777,7 +778,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                 lokacije.add(aol.getLokacija());
             }
         }
-
         DefaultComboBoxModel<Lokacija> ml = new DefaultComboBoxModel<>();
         ml.addAll(lokacije);
         cmbLokacije.setModel(ml);
