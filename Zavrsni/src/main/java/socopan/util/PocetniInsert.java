@@ -45,11 +45,11 @@ public class PocetniInsert {
         aoli = new ArrayList<>();
         artikli = new ArrayList<>();
         session.getTransaction().begin();
-        kreirajLokacije();
-        kreirajOblike();
-        kreirajKategorije();
-        kreirajArtikle();
-        kreirajAole();
+//        kreirajLokacije();
+//        kreirajOblike();
+//        kreirajKategorije();
+//        kreirajArtikle();
+//        kreirajAole();
         session.getTransaction().commit();
     }
 

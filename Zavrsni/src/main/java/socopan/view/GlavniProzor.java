@@ -751,9 +751,52 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         txtKolicinaUkupna.setText(e.getKolicinaUkupna().toString());
         cmbKategorije.setSelectedItem(e.getKategorija());
         
-        DefaultListModel<AOL> m = new DefaultListModel<>();
-        m.addAll(e.getAoli());
+        List<Oblik> oblici = new ArrayList<>();
+        for (AOL aol : e.getAoli()) {
+            System.out.println(aol.getOblik().getNaziv());
+            if (!oblici.contains(aol.getOblik())) {
+                System.out.println("DODAO");
+                oblici.add(aol.getOblik());
+            }
+        }
+
+        DefaultComboBoxModel<Oblik> m = new DefaultComboBoxModel<>();
+        m.addAll(oblici);
+        cmbOblici.setModel(m);
+        cmbOblici.repaint();
+
+        if (!oblici.isEmpty()) {
+            cmbOblici.setSelectedIndex(0);
+        }
+
+        List<Lokacija> lokacije = new ArrayList<>();
+        for (AOL aol : e.getAoli()) {
+            //System.out.println(aol.getOblik().getNaziv());
+            if (!lokacije.contains(aol.getLokacija())) {
+                //  System.out.println("DODAO");
+                lokacije.add(aol.getLokacija());
+            }
+        }
+
+        DefaultComboBoxModel<Lokacija> ml = new DefaultComboBoxModel<>();
+        ml.addAll(lokacije);
+        cmbLokacije.setModel(ml);
+        cmbLokacije.repaint();
+
+        if (!lokacije.isEmpty()) {
+            cmbLokacije.setSelectedIndex(0);
+
+            for (AOL aol : e.getAoli()) {
+                if (aol.getLokacija().equals(lokacije.get(0))) {
+                    txtKolocinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
+                    break;
+                }
+            }
+
+        }
+
     }
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
