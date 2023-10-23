@@ -160,7 +160,6 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         obrada.setEntitet(new Oblik());
         var e = obrada.getEntitet();
         e.setNaziv(txtDodaj.getText());
-        
         try {
             obrada.create();
             ucitaj();
@@ -169,15 +168,14 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
         }
     }//GEN-LAST:event_btnDodajActionPerformed
-
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
 
         var e = lstPodaci.getSelectedValue();
-
         obrada.setEntitet(e);
+        popuniModel();
         try {
             obrada.update();
             ucitaj();
@@ -217,13 +215,10 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         if(evt.getValueIsAdjusting()){
             return;
         }
-        
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
-        
-        obrada.setEntitet(lstPodaci.getSelectedValue());
-        
+                obrada.setEntitet(lstPodaci.getSelectedValue());
         popuniView();
         txtObrisi.setText("");
     }//GEN-LAST:event_lstPodaciValueChanged
@@ -251,13 +246,7 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     @Override
     public void popuniModel(){
         var e = obrada.getEntitet();
-        if(!txtDodaj.getText().equals("")|| txtDodaj.getText() != null){
-            e.setNaziv(txtDodaj.getText());
-        }else if(!txtPromjeni.getText().equals("") || txtPromjeni.getText() != null){
-            e.setNaziv(txtPromjeni.getText());
-        }else{
-            e.setNaziv(txtObrisi.getText());
-        }
+        e.setNaziv(txtPromjeni.getText());
     }
     
     @Override
