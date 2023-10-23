@@ -287,16 +287,24 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         cmbOblici.setActionCommand("");
         cmbOblici.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbOblici.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbObliciActionPerformed(evt);
+        cmbOblici.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                cmbObliciPopupMenuWillBecomeVisible(evt);
             }
         });
 
         cmbLokacije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbLokacije.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbLokacijeActionPerformed(evt);
+        cmbLokacije.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                cmbLokacijePopupMenuWillBecomeVisible(evt);
             }
         });
 
@@ -332,11 +340,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cmbKategorije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbKategorije.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKategorijeActionPerformed(evt);
-            }
-        });
 
         btnDodajOblik.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnDodajOblik.setText("+");
@@ -575,10 +578,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
     }//GEN-LAST:event_tglRaznoActionPerformed
 
-    private void cmbObliciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObliciActionPerformed
-        ucitajOblike();
-    }//GEN-LAST:event_cmbObliciActionPerformed
-
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Artikal());
         popuniModel();
@@ -622,14 +621,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         
         popuniView();
     }//GEN-LAST:event_lstPodaciValueChanged
-
-    private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
-        ucitajLokacije();
-    }//GEN-LAST:event_cmbLokacijeActionPerformed
-
-    private void cmbKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategorijeActionPerformed
-        
-    }//GEN-LAST:event_cmbKategorijeActionPerformed
 
     private void btnDodajLokacijuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajLokacijuActionPerformed
         new ProzorLokacija().setVisible(true);
@@ -721,6 +712,14 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         //
         obrisiUnos();
     }//GEN-LAST:event_btnObrišiActionPerformed
+
+    private void cmbObliciPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbObliciPopupMenuWillBecomeVisible
+        //ucitajOblike();
+    }//GEN-LAST:event_cmbObliciPopupMenuWillBecomeVisible
+
+    private void cmbLokacijePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbLokacijePopupMenuWillBecomeVisible
+        //ucitajLokacije();
+    }//GEN-LAST:event_cmbLokacijePopupMenuWillBecomeVisible
     @Override
     public void ucitaj() {
         DefaultListModel<Artikal> m = new DefaultListModel<>();

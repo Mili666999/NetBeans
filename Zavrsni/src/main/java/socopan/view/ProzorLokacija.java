@@ -75,6 +75,11 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
         });
 
         txtDodaj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDodaj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDodajMouseClicked(evt);
+            }
+        });
 
         txtPromjeni.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -152,8 +157,6 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        txtPromjeni.setText("");
-        txtObrisi.setText("");
         obrada.setEntitet(new Lokacija());
         var e = obrada.getEntitet();
         e.setNaziv(txtDodaj.getText());
@@ -167,8 +170,6 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        txtDodaj.setText("");
-        txtObrisi.setText("");
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
@@ -176,8 +177,6 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
         var e = lstPodaci.getSelectedValue();
         
         obrada.setEntitet(e);
-        popuniModel();
-        
         try {
             obrada.update();
             ucitaj();
@@ -189,8 +188,6 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        txtDodaj.setText("");
-        txtPromjeni.setText("");
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
@@ -237,6 +234,11 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
             txtPromjeni.setText("");
         }
     }//GEN-LAST:event_lstPodaciMouseClicked
+
+    private void txtDodajMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDodajMouseClicked
+        txtPromjeni.setText("");
+        txtObrisi.setText("");
+    }//GEN-LAST:event_txtDodajMouseClicked
     @Override
     public void ucitaj(){
         DefaultListModel<Lokacija> m = new DefaultListModel<>();
@@ -248,7 +250,13 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     @Override
     public void popuniModel(){
         var e = obrada.getEntitet();
-        e.setNaziv(txtPromjeni.getText()); 
+        if(!txtDodaj.getText().equals("")|| txtDodaj.getText() != null){
+            e.setNaziv(txtDodaj.getText());
+        }else if(!txtPromjeni.getText().equals("") || txtPromjeni.getText() != null){
+            e.setNaziv(txtPromjeni.getText());
+        }else{
+            e.setNaziv(txtObrisi.getText());
+        }
     }
     
     @Override
@@ -270,6 +278,4 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     private javax.swing.JTextField txtObrisi;
     private javax.swing.JTextField txtPromjeni;
     // End of variables declaration//GEN-END:variables
-
- 
 }

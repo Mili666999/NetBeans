@@ -67,6 +67,11 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         jScrollPane1.setViewportView(lstPodaci);
 
         txtDodaj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtDodaj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDodajMouseClicked(evt);
+            }
+        });
 
         btnDodaj.setText("Dodaj");
         btnDodaj.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -151,11 +156,10 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        txtPromjeni.setText("");
-        txtObrisi.setText("");
         obrada.setEntitet(new Oblik());
         var e = obrada.getEntitet();
         e.setNaziv(txtDodaj.getText());
+        
         try {
             obrada.create();
             ucitaj();
@@ -166,8 +170,6 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        txtDodaj.setText("");
-        txtObrisi.setText("");
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
@@ -175,8 +177,6 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         var e = lstPodaci.getSelectedValue();
 
         obrada.setEntitet(e);
-        popuniModel();
-
         try {
             obrada.update();
             ucitaj();
@@ -188,8 +188,6 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void btnObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiActionPerformed
-        txtDodaj.setText("");
-        txtPromjeni.setText("");
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
@@ -236,6 +234,11 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
             txtPromjeni.setText("");
         }
     }//GEN-LAST:event_lstPodaciMouseClicked
+
+    private void txtDodajMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDodajMouseClicked
+        txtPromjeni.setText("");
+        txtObrisi.setText("");
+    }//GEN-LAST:event_txtDodajMouseClicked
     @Override
     public void ucitaj() {
          DefaultListModel<Oblik> m = new DefaultListModel<>();
@@ -247,7 +250,13 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     @Override
     public void popuniModel(){
         var e = obrada.getEntitet();
-        e.setNaziv(txtPromjeni.getText());
+        if(!txtDodaj.getText().equals("")|| txtDodaj.getText() != null){
+            e.setNaziv(txtDodaj.getText());
+        }else if(!txtPromjeni.getText().equals("") || txtPromjeni.getText() != null){
+            e.setNaziv(txtPromjeni.getText());
+        }else{
+            e.setNaziv(txtObrisi.getText());
+        }
     }
     
     @Override
@@ -269,6 +278,4 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     private javax.swing.JTextField txtObrisi;
     private javax.swing.JTextField txtPromjeni;
     // End of variables declaration//GEN-END:variables
-
-   
 }

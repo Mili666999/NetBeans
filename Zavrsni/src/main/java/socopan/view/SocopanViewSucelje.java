@@ -13,5 +13,4 @@ public interface SocopanViewSucelje {
     void ucitaj();
     void popuniModel();
     void popuniView();
-    
 }
