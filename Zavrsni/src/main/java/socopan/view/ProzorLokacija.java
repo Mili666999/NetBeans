@@ -217,13 +217,10 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
         if(evt.getValueIsAdjusting()){
             return;
         }
-        
         if(lstPodaci.getSelectedValue()==null){
             return;
         }
-        
         obrada.setEntitet(lstPodaci.getSelectedValue());
-        
         popuniView();
         txtObrisi.setText("");
     }//GEN-LAST:event_lstPodaciValueChanged
@@ -250,14 +247,8 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     
     @Override
     public void popuniModel(){
-        var e = obrada.getEntitet();
-        if(!txtDodaj.getText().equals("")|| txtDodaj.getText() != null){
-            e.setNaziv(txtDodaj.getText());
-        }else if(!txtPromjeni.getText().equals("") || txtPromjeni.getText() != null){
-            e.setNaziv(txtPromjeni.getText());
-        }else{
-            e.setNaziv(txtObrisi.getText());
-        }
+     var e = obrada.getEntitet();
+        e.setNaziv(txtPromjeni.getText());
     }
     
     @Override
