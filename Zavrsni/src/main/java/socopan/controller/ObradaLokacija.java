@@ -31,6 +31,7 @@ public class ObradaLokacija extends Obrada<Lokacija>{
     @Override
     protected void kontrolaUnos() throws SocopanException {
         kontrolaNaziv();
+        nadopunaNaziva();
     }
 
     @Override
@@ -40,9 +41,9 @@ public class ObradaLokacija extends Obrada<Lokacija>{
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-        if(entitet.getAoli().size()>0){
-            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava");
-        }
+//        if(entitet.getAoli().size()>0){
+//            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava");
+//        }
     }
 
     private void kontrolaNaziv() throws SocopanException{
@@ -52,13 +53,14 @@ public class ObradaLokacija extends Obrada<Lokacija>{
         if(entitet.getNaziv().isEmpty()){
             throw new SocopanException("Naziv lokacije ne smije biti prazan");
         }
-        
+    }
+    
+    private void nadopunaNaziva(){
         List<Lokacija> lista = session.createQuery("from Lokacija l where l.naziv like :uvjet", Lokacija.class)
                 .setParameter("uvjet", entitet.getNaziv() + "%").list();
         
         if(lista != null && !lista.isEmpty()){
-            throw new SocopanException("Taj naziv se već koristi");
+             entitet.setNaziv(entitet.getNaziv() + " (" + (lista.size()) + ")");
         }
     }
-    
 }

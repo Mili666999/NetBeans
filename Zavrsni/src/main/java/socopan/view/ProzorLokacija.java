@@ -29,6 +29,10 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
         setTitle(Alati.NAZIV_APP + " | Lokacije");
         ucitaj();
     }
+    
+    public ObradaLokacija getObradaLokacija(){
+        return obrada;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -178,6 +182,7 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
         var e = lstPodaci.getSelectedValue();
         
         obrada.setEntitet(e);
+        popuniModel();
         try {
             obrada.update();
             ucitaj();

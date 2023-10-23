@@ -29,6 +29,10 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         setTitle(Alati.NAZIV_APP + " | Oblici");
         ucitaj();
     }
+    
+    public ObradaOblik getObradaGrupa(){
+        return obrada;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -181,7 +185,7 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
             ucitaj();
             txtPromjeni.setText("");
         } catch (SocopanException se) {
-            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+            JOptionPane.showMessageDialog(getRootPane(), se.getMessage());
             obrada.refresh();
         }
     }//GEN-LAST:event_btnPromjeniActionPerformed

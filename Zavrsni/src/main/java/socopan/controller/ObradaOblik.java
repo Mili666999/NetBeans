@@ -30,6 +30,7 @@ public class ObradaOblik extends Obrada<Oblik>{
     @Override
     protected void kontrolaUnos() throws SocopanException {
         kontrolaNaziv();
+        nadopunaNaziva();
     }
 
     @Override
@@ -39,9 +40,9 @@ public class ObradaOblik extends Obrada<Oblik>{
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-        if(entitet.getAoli().size()<0){
-            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
-        }
+//        if(entitet.getAoli().size()<0){
+//            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
+//        }
     }
 
     private void kontrolaNaziv() throws SocopanException{
@@ -51,13 +52,14 @@ public class ObradaOblik extends Obrada<Oblik>{
         if(entitet.getNaziv().isEmpty()){
             throw new SocopanException("Naziv oblika ne smije biti prazan");
         }
-        
+    }   
+   
+    private void nadopunaNaziva(){
         List<Oblik> lista = session.createQuery("from Oblik o where o.naziv like :uvjet", Oblik.class)
                 .setParameter("uvjet", entitet.getNaziv() + "%").list();
         
         if(lista != null && !lista.isEmpty()){
-        throw new SocopanException("Taj naziv se već koristi");
+            entitet.setNaziv(entitet.getNaziv() + " (" + (lista.size()) + ")");
         }
     }
-    
 }
