@@ -6,6 +6,7 @@ package socopan.view;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.PopupMenuEvent;
 import socopan.controller.ObradaLokacija;
 import socopan.model.Lokacija;
 import socopan.util.Alati;

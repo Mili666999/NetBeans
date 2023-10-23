@@ -4,6 +4,9 @@
  */
 package socopan.view;
 
+import javax.swing.JComboBox;
+import socopan.model.Oblik;
+
 /**
  *
  * @author Mili

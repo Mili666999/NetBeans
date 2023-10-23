@@ -287,26 +287,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         cmbOblici.setActionCommand("");
         cmbOblici.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbOblici.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                cmbObliciPopupMenuWillBecomeVisible(evt);
-            }
-        });
 
         cmbLokacije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        cmbLokacije.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                cmbLokacijePopupMenuWillBecomeVisible(evt);
-            }
-        });
 
         txtTrazi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTrazi.addActionListener(new java.awt.event.ActionListener() {
@@ -712,14 +694,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         //
         obrisiUnos();
     }//GEN-LAST:event_btnObrišiActionPerformed
-
-    private void cmbObliciPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbObliciPopupMenuWillBecomeVisible
-        //ucitajOblike();
-    }//GEN-LAST:event_cmbObliciPopupMenuWillBecomeVisible
-
-    private void cmbLokacijePopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cmbLokacijePopupMenuWillBecomeVisible
-        //ucitajLokacije();
-    }//GEN-LAST:event_cmbLokacijePopupMenuWillBecomeVisible
     @Override
     public void ucitaj() {
         DefaultListModel<Artikal> m = new DefaultListModel<>();
@@ -836,6 +810,4 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private javax.swing.JTextField txtKolocinaNaLokaciji;
     private javax.swing.JTextField txtTrazi;
     // End of variables declaration//GEN-END:variables
-
-    
 }

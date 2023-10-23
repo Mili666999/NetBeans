@@ -4,6 +4,7 @@
  */
 package socopan.view;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import socopan.controller.ObradaOblik;
