@@ -691,7 +691,28 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_btnObrisiUnosActionPerformed
 
     private void btnObrišiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrišiActionPerformed
-        //
+        if(lstPodaci.getSelectedValue()==null){
+            return;
+        }
+        if(!lstPodaci.getSelectedValue().toString().equals("")){
+        } else {
+            return;
+        }
+
+        var e = lstPodaci.getSelectedValue();
+
+        if(JOptionPane.showConfirmDialog(getRootPane(), e.getNaziv(), "Sigurno obrisati?", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION){
+            return;
+        }
+
+        obrada.setEntitet(e);
+
+        try {
+            obrada.delete();
+            ucitaj();
+        } catch (SocopanException se) {
+            JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
+        }
         obrisiUnos();
     }//GEN-LAST:event_btnObrišiActionPerformed
     @Override

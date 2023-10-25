@@ -7,6 +7,7 @@ package socopan.view;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import socopan.controller.ObradaOblik;
 import socopan.model.Oblik;
 import socopan.util.Alati;
@@ -162,8 +163,7 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Oblik());
-        var e = obrada.getEntitet();
-        e.setNaziv(txtDodaj.getText());
+        dodaj();
         try {
             obrada.create();
             ucitaj();
@@ -257,6 +257,11 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
     public void popuniView(){
         var e = obrada.getEntitet();
         txtPromjeni.setText(e.getNaziv());
+    }
+    
+    public void dodaj(){
+        var e = obrada.getEntitet();
+        e.setNaziv(txtDodaj.getText());
     }
 
 
