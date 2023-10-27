@@ -735,7 +735,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             e.setKolicinaUkupna(null);
         }
         
-        e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());    
+        e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());
+
     }
 
     @Override
