@@ -732,20 +732,26 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     public void popuniModel() {
         var e = obrada.getEntitet();
         e.setNaziv(txtArtikal.getText());        
+        
         try {
             e.setKolicinaUkupna(BigDecimal.valueOf(df.parse(txtKolicinaUkupna.getText()).doubleValue()));
-        } catch (ParseException ex) {
-            e.setKolicinaUkupna(null);
+        } catch (Exception ex) {
+            e.setKolicinaUkupna(BigDecimal.ZERO);
         }                                        
+        
         e.setKategorija((Kategorija)cmbKategorije.getSelectedItem()); 
+        
         AOL a = new AOL();
         a.setOblik((Oblik)cmbOblici.getSelectedItem());
         a.setLokacija((Lokacija)cmbLokacije.getSelectedItem());
+        
         try {
             a.setKolicinaNaLokaciji(BigDecimal.valueOf(df.parse(txtKolocinaNaLokaciji.getText()).doubleValue()));
-        } catch (ParseException ex) {
-            a.setKolicinaNaLokaciji(null);
+        } catch (Exception ex) {
+            a.setKolicinaNaLokaciji(BigDecimal.ZERO);
         }
+        
+        a.setArtikal(e);
     }
 
     @Override
@@ -753,7 +759,13 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         var e = obrada.getEntitet();
        
         txtArtikal.setText(e.getNaziv());
-        txtKolicinaUkupna.setText(e.getKolicinaUkupna().toString());
+        
+        try {
+            txtKolicinaUkupna.setText(String.valueOf(e.getKolicinaUkupna()));
+        } catch (Exception ex) {
+            txtKolicinaUkupna.setText("");
+        }
+        
         cmbKategorije.setSelectedItem(e.getKategorija());
         
         List<Oblik> oblici = new ArrayList<>();
