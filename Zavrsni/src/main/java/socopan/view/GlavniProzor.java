@@ -7,9 +7,11 @@ package socopan.view;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -53,6 +55,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         ucitajLokacije();
         obrisiUnos();
         gasiPrekidace(null);
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.of("hr", "HR"));
+        df = new DecimalFormat("###,##0.00", dfs);
         ucitaj();
     }
     
@@ -547,6 +551,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
+        popuniModel();
+        ucitaj();
         obrisiUnos();
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
@@ -752,6 +758,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
         
         a.setArtikal(e);
+        
     }
 
     @Override

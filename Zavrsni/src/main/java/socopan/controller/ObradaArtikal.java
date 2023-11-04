@@ -4,6 +4,7 @@
  */
 package socopan.controller;
 
+import java.math.BigDecimal;
 import java.text.Collator;
 import socopan.model.Artikal;
 import socopan.util.SocopanException;
@@ -47,6 +48,7 @@ public class ObradaArtikal extends Obrada<Artikal>{
     @Override
     protected void kontrolaUnos() throws SocopanException {
         kontrolaNaziv();
+        kontrolaKolicina();
     }
 
     @Override
@@ -68,11 +70,22 @@ public class ObradaArtikal extends Obrada<Artikal>{
         if(entitet.getNaziv().isEmpty()){
             throw new SocopanException("Naziv artikla ne smije biti prazan");
         }
+        
         if(entitet.getKategorija()==null){
             throw new SocopanException("Kategorija artikla mora biti definirana");
         }
         if(entitet.getKategorija().toString().isEmpty()){
             throw new SocopanException("Kategorija artikla mora biti definirana");
+        }
+    }
+    
+    private void kontrolaKolicina() throws SocopanException{
+        var k = entitet.getKolicinaUkupna();
+        if(k==null){
+            return;
+        }
+        if(k.compareTo(BigDecimal.ZERO)<0){
+            throw new SocopanException("Količina ne smije biti manja od 0 (nula)");
         }
     }
     
