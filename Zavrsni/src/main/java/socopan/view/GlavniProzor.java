@@ -759,6 +759,10 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         
         a.setArtikal(e);
         
+        if (e.getAoli() == null) {
+        e.setAoli(new ArrayList<>());
+        }
+        e.getAoli().add(a);
     }
 
     @Override
