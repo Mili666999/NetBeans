@@ -1,0 +1,400 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": false,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": false,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": true,
+    "hideDataStructures": true,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": false,
+    "showMethods": false,
+    "showMethodParameterNames": false,
+    "showMethodParameterTypes": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "socopan.controller.Obrada",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_104069929 { 
+   	label=model
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   AOL1158593488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AOL</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   artikal: Artikal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   kolicinaNaLokaciji: BigDecimal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lokacija: Lokacija [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   oblik: Oblik [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Artikal1158593488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Artikal</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   aoli: List&lt;AOL&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   kategorija: Kategorija [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   kolicinaUkupna: BigDecimal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   naziv: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Entitet1158593488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Entitet</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   id: Integer [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Kategorija1158593488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Kategorija</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   naziv: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Lokacija1158593488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Lokacija</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   aoli: List&lt;AOL&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   naziv: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Oblik1158593488[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Oblik</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   aoli: List&lt;AOL&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   naziv: String [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3600386 { 
+   	label=util
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   FilterKategorija37617275[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)FilterKategorija</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_3619493 { 
+   	label=view
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   GlavniProzor37636382[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GlavniProzor</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   btnDodaj: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnDodajLokaciju: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnDodajOblik: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnObrisiUnos: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnObriši: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnPromjeni: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnSveKategorije: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnTrazi: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cmbKategorije: JComboBox&lt;Kategorija&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cmbLokacije: JComboBox&lt;Lokacija&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   cmbOblici: JComboBox&lt;Oblik&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   df: DecimalFormat [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel1: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel2: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel3: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel4: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel5: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel6: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenu1: JMenu [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenu2: JMenu [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenuBar1: JMenuBar [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenuItem1: JMenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenuItem2: JMenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenuItem3: JMenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jMenuItem4: JMenuItem [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jScrollPane1: JScrollPane [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lstPodaci: JList&lt;Artikal&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   obrada: ObradaArtikal [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   obradaFilter: FilterKategorija [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tglDezinfekcija: JToggleButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tglEndoskopije: JToggleButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tglInfuzije: JToggleButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tglLijekovi: JToggleButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tglOstriPredmeti: JToggleButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   tglRazno: JToggleButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtArtikal: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtKolicinaUkupna: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtKolocinaNaLokaciji: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtTrazi: JTextField [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ProzorLokacija37636382[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ProzorLokacija</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   btnDodaj: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnObrisi: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnPromjeni: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel1: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel2: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jScrollPane1: JScrollPane [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lstPodaci: JList&lt;Lokacija&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   obrada: ObradaLokacija [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtDodaj: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtObrisi: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtPromjeni: JTextField [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ProzorOblik37636382[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ProzorOblik</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   btnDodaj: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnObrisi: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   btnPromjeni: JButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel1: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jLabel2: JLabel [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   jScrollPane1: JScrollPane [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   lstPodaci: JList&lt;Oblik&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   obrada: ObradaOblik [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtDodaj: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtObrisi: JTextField [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   txtPromjeni: JTextField [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_637428636 { 
+   	label=controller
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   Obrada556469419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Obrada&lt;T extends Entitet&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   entitet: T [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   session: Session [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ObradaAOL556469419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ObradaAOL</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ObradaArtikal556469419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ObradaArtikal</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ObradaKategorija556469419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ObradaKategorija</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ObradaLokacija556469419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ObradaLokacija</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ObradaOblik556469419[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ObradaOblik</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+'edges    
+AOL1158593488 -> Artikal1158593488[label="artikal
+[0..1]"];
+AOL1158593488 -> Lokacija1158593488[label="lokacija
+[0..1]"];
+AOL1158593488 -> Oblik1158593488[label="oblik
+[0..1]"];
+Artikal1158593488 -> AOL1158593488[label="aoli
+[0..*]"];
+Artikal1158593488 -> Kategorija1158593488[label="kategorija
+[0..1]"];
+Entitet1158593488 -> AOL1158593488[arrowhead=none, arrowtail=empty, dir=both];
+Entitet1158593488 -> Artikal1158593488[arrowhead=none, arrowtail=empty, dir=both];
+Entitet1158593488 -> Kategorija1158593488[arrowhead=none, arrowtail=empty, dir=both];
+Entitet1158593488 -> Lokacija1158593488[arrowhead=none, arrowtail=empty, dir=both];
+Entitet1158593488 -> Oblik1158593488[arrowhead=none, arrowtail=empty, dir=both];
+GlavniProzor37636382 -> FilterKategorija37617275[label="obradaFilter
+[0..1]"];
+GlavniProzor37636382 -> ObradaArtikal556469419[label="obrada
+[0..1]"];
+GlavniProzor37636382 -> ProzorLokacija37636382[arrowhead=none];
+GlavniProzor37636382 -> ProzorOblik37636382[arrowhead=none];
+Lokacija1158593488 -> AOL1158593488[label="aoli
+[0..*]"];
+Oblik1158593488 -> AOL1158593488[label="aoli
+[0..*]"];
+Obrada556469419 -> Entitet1158593488[label="create() -> setId()"];
+Obrada556469419 -> FilterKategorija37617275[arrowhead=none, arrowtail=empty, dir=both];
+Obrada556469419 -> ObradaAOL556469419[arrowhead=none, arrowtail=empty, dir=both];
+Obrada556469419 -> ObradaArtikal556469419[arrowhead=none, arrowtail=empty, dir=both];
+Obrada556469419 -> ObradaKategorija556469419[arrowhead=none, arrowtail=empty, dir=both];
+Obrada556469419 -> ObradaLokacija556469419[arrowhead=none, arrowtail=empty, dir=both];
+Obrada556469419 -> ObradaOblik556469419[arrowhead=none, arrowtail=empty, dir=both];
+ProzorLokacija37636382 -> ObradaLokacija556469419[label="obrada
+[0..1]"];
+ProzorOblik37636382 -> ObradaOblik556469419[label="obrada
+[0..1]"];
+    
+}
+@enduml

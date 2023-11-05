@@ -736,7 +736,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
         
         e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());
-        
+
         AOL a = new AOL();
         a.setOblik((Oblik)cmbOblici.getSelectedItem());
         a.setLokacija((Lokacija)cmbLokacije.getSelectedItem());
@@ -747,6 +747,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
         e.getAoli().add(a);
     
+
     }
 
     @Override
