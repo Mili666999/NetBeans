@@ -7,8 +7,10 @@ package socopan.view;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -41,6 +43,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
      */
     public GlavniProzor() {
         initComponents();
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols(Locale.of("hr", "HR"));
+        df = new DecimalFormat("###,##0.00", dfs);
         obrada = new ObradaArtikal();
         obradaFilter = new FilterKategorija();
         setTitle(Alati.NAZIV_APP);
@@ -728,18 +732,21 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     public void popuniModel() {
         var e = obrada.getEntitet();
         e.setNaziv(txtArtikal.getText());
-        
         try {
             e.setKolicinaUkupna(BigDecimal.valueOf(df.parse(txtKolicinaUkupna.getText()).doubleValue()));
         } catch (Exception ex) {
             e.setKolicinaUkupna(null);
         }
-        
         e.setKategorija((Kategorija)cmbKategorije.getSelectedItem());
 
         AOL a = new AOL();
         a.setOblik((Oblik)cmbOblici.getSelectedItem());
         a.setLokacija((Lokacija)cmbLokacije.getSelectedItem());
+        try {
+            a.setKolicinaNaLokaciji(BigDecimal.valueOf(df.parse(txtKolocinaNaLokaciji.getText()).doubleValue()));
+        } catch (Exception ex) {
+            a.setKolicinaNaLokaciji(null);
+        }
         a.setArtikal(e);
 
         if (e.getAoli() == null) {
@@ -747,7 +754,6 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
         e.getAoli().add(a);
     
-
     }
 
     @Override
