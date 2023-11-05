@@ -163,8 +163,7 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
         obrada.setEntitet(new Lokacija());
-        var e = obrada.getEntitet();
-        e.setNaziv(txtDodaj.getText());
+        popuniModel();
         try {
             obrada.create();
             ucitaj();
@@ -253,13 +252,17 @@ public class ProzorLokacija extends javax.swing.JFrame implements SocopanViewSuc
     @Override
     public void popuniModel(){
      var e = obrada.getEntitet();
-        e.setNaziv(txtPromjeni.getText());
+     if(txtPromjeni.equals("")) {
+         txtDodaj.setText(e.getNaziv());
+     }else {txtPromjeni.setText(e.getNaziv());
+
+        }
     }
     
     @Override
     public void popuniView(){
         var e = obrada.getEntitet();
-        txtPromjeni.setText(e.getNaziv());
+       txtPromjeni.setText(e.getNaziv());
     }
 
     

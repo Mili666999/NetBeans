@@ -41,9 +41,9 @@ public class ObradaLokacija extends Obrada<Lokacija>{
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-//        if(entitet.getAoli().size()>0){
-//            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava");
-//        }
+        if(entitet.getAoli().size()>0){
+            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava");
+        }
     }
 
     private void kontrolaNaziv() throws SocopanException{
