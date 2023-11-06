@@ -547,6 +547,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
+        popuniModel();
         obrisiUnos();
     }//GEN-LAST:event_btnPromjeniActionPerformed
 

@@ -4,15 +4,19 @@
  */
 package socopan.controller;
 
+import java.util.ArrayList;
 import socopan.model.Oblik;
 import socopan.util.SocopanException;
 import java.util.List;
+import socopan.model.AOL;
 
 /**
  *
  * @author Mili
  */
 public class ObradaOblik extends Obrada<Oblik>{
+    
+    private ObradaArtikal obrada;
     
     
     public ObradaOblik(){
@@ -41,9 +45,14 @@ public class ObradaOblik extends Obrada<Oblik>{
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-//        if(entitet.getAoli().size()>0){
-//            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
-//        }
+        var e = obrada.getEntitet();
+        List<Oblik> oblici = new ArrayList<>();
+        for(AOL aol : e.getAoli()){
+            oblici.add(aol.getOblik());
+            if(oblici.contains(aol.getOblik())){
+                throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
+            }
+        }
     }
 
     private void kontrolaNaziv() throws SocopanException{
