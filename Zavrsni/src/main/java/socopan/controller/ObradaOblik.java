@@ -16,8 +16,7 @@ import socopan.model.AOL;
  */
 public class ObradaOblik extends Obrada<Oblik>{
     
-    private ObradaArtikal obrada;
-    
+
     
     public ObradaOblik(){
         super();
@@ -45,14 +44,9 @@ public class ObradaOblik extends Obrada<Oblik>{
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-        var e = obrada.getEntitet();
-        List<Oblik> oblici = new ArrayList<>();
-        for(AOL aol : e.getAoli()){
-            oblici.add(aol.getOblik());
-            if(oblici.contains(aol.getOblik())){
-                throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
-            }
-        }
+//        if(){
+//            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
+//        }
     }
 
     private void kontrolaNaziv() throws SocopanException{

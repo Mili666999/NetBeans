@@ -31,7 +31,7 @@ public class ProzorOblik extends javax.swing.JFrame implements SocopanViewSucelj
         ucitaj();
     }
     
-    public ObradaOblik getObradaGrupa(){
+    public ObradaOblik getObradaOblik(){
         return obrada;
     }
 
