@@ -44,7 +44,7 @@ public class ObradaOblik extends Obrada<Oblik>{
 
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
-        if(){
+        if(entitet.getAoli().contains(entitet.getNaziv())){
             throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
         }
     }
