@@ -57,22 +57,22 @@ public class ObradaArtikal extends Obrada<Artikal>{
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
         if(entitet.getKolicinaUkupna().intValue()!=0){
-            throw new SocopanException("Artikal se ne može obrisati jer ukupna količina nije 0(nula)");
+            throw new SocopanException("Artikal se ne može obrisati jer ukupna količina nije 0(nula)!");
         }
     }
 
     private void kontrolaNaziv() throws SocopanException{
         if(entitet.getNaziv()==null){
-            throw new SocopanException("Naziv artikla mora biti definiran");
+            throw new SocopanException("Naziv artikla mora biti definiran!");
         }
         if(entitet.getNaziv().isEmpty()){
-            throw new SocopanException("Naziv artikla ne smije biti prazan");
+            throw new SocopanException("Naziv artikla ne smije biti prazan!");
         }
         if(entitet.getKategorija()==null){
-            throw new SocopanException("Kategorija artikla mora biti definirana");
+            throw new SocopanException("Kategorija artikla mora biti definirana!");
         }
         if(entitet.getKategorija().toString().isEmpty()){
-            throw new SocopanException("Kategorija artikla mora biti definirana");
+            throw new SocopanException("Kategorija artikla mora biti definirana!");
         }
     }
     

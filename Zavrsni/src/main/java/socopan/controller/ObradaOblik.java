@@ -45,16 +45,16 @@ public class ObradaOblik extends Obrada<Oblik>{
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
         if(!entitet.getAoli().isEmpty()){
-            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava ");
+            throw new SocopanException("Oblik se ne može obrisati jer se upotrebljava!");
         }
     }
 
     private void kontrolaNaziv() throws SocopanException{
         if(entitet.getNaziv()==null){
-            throw new SocopanException("Naziv oblika mora biti definiran");
+            throw new SocopanException("Naziv oblika mora biti definiran!");
         }
         if(entitet.getNaziv().isEmpty()){
-            throw new SocopanException("Naziv oblika ne smije biti prazan");
+            throw new SocopanException("Naziv oblika ne smije biti prazan!");
         }
     }   
    

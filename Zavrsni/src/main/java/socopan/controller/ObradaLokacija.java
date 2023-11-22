@@ -42,16 +42,16 @@ public class ObradaLokacija extends Obrada<Lokacija>{
     @Override
     protected void kontrolaBrisanje() throws SocopanException {
         if(!entitet.getAoli().isEmpty()){
-            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava");
+            throw new SocopanException("Lokacija se ne može obrisati jer se upotrebljava!");
         }
     }
 
     private void kontrolaNaziv() throws SocopanException{
         if(entitet.getNaziv()==null){
-            throw new SocopanException("Naziv lokacije mora biti definiran");
+            throw new SocopanException("Naziv lokacije mora biti definiran!");
         }
         if(entitet.getNaziv().isEmpty()){
-            throw new SocopanException("Naziv lokacije ne smije biti prazan");
+            throw new SocopanException("Naziv lokacije ne smije biti prazan!");
         }
     }
     
