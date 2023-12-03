@@ -3,6 +3,7 @@ package socopan.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,7 @@ public class Lokacija extends Entitet {
     @Column(nullable = false)
     private String naziv;
     @OneToMany(mappedBy = "lokacija")
-    private List<AOL> aoli;
+    private List<AOL> aoli = new ArrayList<>();
 
     public Lokacija() {
 
