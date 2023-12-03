@@ -13,7 +13,6 @@ import org.hibernate.Session;
 /**
  *
  * @author Mili
- * @param <T>
  */
 public abstract class Obrada<T extends Entitet>{
     
