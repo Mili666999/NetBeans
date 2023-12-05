@@ -745,7 +745,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_cmbObliciActionPerformed
 
     private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_cmbLokacijeActionPerformed
     @Override
     public void ucitaj() {
