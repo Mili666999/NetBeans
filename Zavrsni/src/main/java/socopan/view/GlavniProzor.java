@@ -291,8 +291,18 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
         cmbOblici.setActionCommand("");
         cmbOblici.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbOblici.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbObliciActionPerformed(evt);
+            }
+        });
 
         cmbLokacije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbLokacije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbLokacijeActionPerformed(evt);
+            }
+        });
 
         txtTrazi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTrazi.addActionListener(new java.awt.event.ActionListener() {
@@ -326,6 +336,11 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cmbKategorije.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        cmbKategorije.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKategorijeActionPerformed(evt);
+            }
+        });
 
         btnDodajOblik.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnDodajOblik.setText("+");
@@ -720,6 +735,18 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         }
         obrisiUnos();
     }//GEN-LAST:event_btnObrišiActionPerformed
+
+    private void cmbKategorijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategorijeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKategorijeActionPerformed
+
+    private void cmbObliciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObliciActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbObliciActionPerformed
+
+    private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbLokacijeActionPerformed
     @Override
     public void ucitaj() {
         DefaultListModel<Artikal> m = new DefaultListModel<>();
