@@ -101,7 +101,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private void obrisiUnos(){
         txtArtikal.setText("");
         txtKolicinaUkupna.setText("");
-        txtKolocinaNaLokaciji.setText("");
+        txtKolicinaNaLokaciji.setText("");
         ucitajKategorije();
         ucitajOblike();
         ucitajLokacije();
@@ -152,7 +152,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtArtikal = new javax.swing.JTextField();
-        txtKolocinaNaLokaciji = new javax.swing.JTextField();
+        txtKolicinaNaLokaciji = new javax.swing.JTextField();
         btnDodaj = new javax.swing.JButton();
         btnPromjeni = new javax.swing.JButton();
         btnObriši = new javax.swing.JButton();
@@ -262,8 +262,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         txtArtikal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtArtikal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        txtKolocinaNaLokaciji.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtKolocinaNaLokaciji.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtKolicinaNaLokaciji.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtKolicinaNaLokaciji.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnDodaj.setText("Dodaj");
         btnDodaj.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -456,7 +456,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                                                 .addComponent(cmbLokacije, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(btnDodajLokaciju, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(txtKolocinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtKolicinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(12, 12, 12)
@@ -529,7 +529,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtKolocinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtKolicinaNaLokaciji, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -746,9 +746,10 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
     private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
         var e = obrada.getEntitet();
+        String odabranaLokacija = cmbLokacije.getSelectedItem().toString();
         for (AOL aol : e.getAoli()) {
-                if (aol.getLokacija().toString().equals(cmbLokacije.getName())) {
-                    txtKolocinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
+                if (aol.getLokacija().toString().equals(odabranaLokacija)) {
+                    txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
                     break;
                 }
             }
@@ -777,7 +778,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         a.setOblik((Oblik)cmbOblici.getSelectedItem());
         a.setLokacija((Lokacija)cmbLokacije.getSelectedItem());
         try {
-            a.setKolicinaNaLokaciji(BigDecimal.valueOf(df.parse(txtKolocinaNaLokaciji.getText()).doubleValue()));
+            a.setKolicinaNaLokaciji(BigDecimal.valueOf(df.parse(txtKolicinaNaLokaciji.getText()).doubleValue()));
         } catch (Exception ex) {
             a.setKolicinaNaLokaciji(null);
         }
@@ -834,7 +835,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
             for (AOL aol : e.getAoli()) {
                 if (aol.getLokacija().equals(lokacije.get(0))) {
-                    txtKolocinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
+                    txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
                     break;
                 }
             }
@@ -879,8 +880,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private javax.swing.JToggleButton tglOstriPredmeti;
     private javax.swing.JToggleButton tglRazno;
     private javax.swing.JTextField txtArtikal;
+    private javax.swing.JTextField txtKolicinaNaLokaciji;
     private javax.swing.JTextField txtKolicinaUkupna;
-    private javax.swing.JTextField txtKolocinaNaLokaciji;
     private javax.swing.JTextField txtTrazi;
     // End of variables declaration//GEN-END:variables
 }
