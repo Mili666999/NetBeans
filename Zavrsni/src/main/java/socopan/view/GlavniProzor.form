@@ -126,7 +126,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="btnDodajLokaciju" min="-2" pref="25" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="txtKolocinaNaLokaciji" min="-2" pref="248" max="-2" attributes="0"/>
+                                          <Component id="txtKolicinaNaLokaciji" min="-2" pref="248" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -221,7 +221,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtKolocinaNaLokaciji" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="txtKolicinaNaLokaciji" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
@@ -413,7 +413,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtKolocinaNaLokaciji">
+    <Component class="javax.swing.JTextField" name="txtKolicinaNaLokaciji">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
