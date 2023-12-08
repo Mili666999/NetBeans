@@ -746,8 +746,12 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
 
     private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
         var e = obrada.getEntitet();
-        
-        
+        for (AOL aol : e.getAoli()) {
+                if (aol.getLokacija().toString().equals(cmbLokacije.getName())) {
+                    txtKolocinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
+                    break;
+                }
+            }
     }//GEN-LAST:event_cmbLokacijeActionPerformed
     @Override
     public void ucitaj() {
