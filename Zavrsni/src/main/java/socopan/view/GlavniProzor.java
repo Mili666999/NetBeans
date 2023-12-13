@@ -749,6 +749,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             if (aol.getOblik().toString().equals(odabraniOblik) & aol.getLokacija().toString().equals(odabranaLokacija)) {
                 txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
                 break;
+            }else{
+            txtKolicinaNaLokaciji.setText("0");
             }
         }
     }//GEN-LAST:event_cmbObliciActionPerformed
@@ -761,6 +763,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
             if (aol.getOblik().toString().equals(odabraniOblik) & aol.getLokacija().toString().equals(odabranaLokacija)) {
                 txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
                 break;
+            }else{
+            txtKolicinaNaLokaciji.setText("0");
             }
         }
     }//GEN-LAST:event_cmbLokacijeActionPerformed
