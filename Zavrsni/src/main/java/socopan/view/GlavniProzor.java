@@ -743,23 +743,26 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     private void cmbObliciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbObliciActionPerformed
         var e = obrada.getEntitet();
         String odabraniOblik = cmbOblici.getSelectedItem().toString();
+        String odabranaLokacija = cmbLokacije.getSelectedItem().toString();
+        
         for (AOL aol : e.getAoli()) {
-                if (aol.getOblik().toString().equals(odabraniOblik)) {
-                    txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
-                    break;
-                }
+            if (aol.getOblik().toString().equals(odabraniOblik) & aol.getLokacija().toString().equals(odabranaLokacija)) {
+                txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
+                break;
             }
+        }
     }//GEN-LAST:event_cmbObliciActionPerformed
-
     private void cmbLokacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLokacijeActionPerformed
         var e = obrada.getEntitet();
+        String odabraniOblik = cmbOblici.getSelectedItem().toString();
         String odabranaLokacija = cmbLokacije.getSelectedItem().toString();
+        
         for (AOL aol : e.getAoli()) {
-                if (aol.getLokacija().toString().equals(odabranaLokacija)) {
-                    txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
-                    break;
-                }
+            if (aol.getOblik().toString().equals(odabraniOblik) & aol.getLokacija().toString().equals(odabranaLokacija)) {
+                txtKolicinaNaLokaciji.setText(aol.getKolicinaNaLokaciji().toString());
+                break;
             }
+        }
     }//GEN-LAST:event_cmbLokacijeActionPerformed
     @Override
     public void ucitaj() {
