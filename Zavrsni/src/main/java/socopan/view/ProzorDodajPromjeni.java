@@ -67,7 +67,8 @@ public class ProzorDodajPromjeni extends javax.swing.JFrame implements SocopanVi
         btnDodajLokaciju = new javax.swing.JButton();
         btnObrisiUnos = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Oblik");
@@ -266,6 +267,7 @@ public class ProzorDodajPromjeni extends javax.swing.JFrame implements SocopanVi
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
