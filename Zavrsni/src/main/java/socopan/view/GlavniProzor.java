@@ -562,8 +562,9 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnPromjeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromjeniActionPerformed
-        popuniModel();
-        obrisiUnos();
+        new ProzorDodajPromjeni().setVisible(true);
+        //popuniModel();
+        //obrisiUnos();
     }//GEN-LAST:event_btnPromjeniActionPerformed
 
     private void tglRaznoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglRaznoActionPerformed
@@ -581,7 +582,8 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
     }//GEN-LAST:event_tglRaznoActionPerformed
 
     private void btnDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDodajActionPerformed
-        obrada.setEntitet(new Artikal());
+        new ProzorDodajPromjeni().setVisible(true);
+        /*obrada.setEntitet(new Artikal());
         popuniModel();
         try {
             obrada.create();
@@ -589,7 +591,7 @@ public class GlavniProzor extends javax.swing.JFrame implements SocopanViewSucel
         } catch (SocopanException se) {
             JOptionPane.showMessageDialog(getRootPane(), se.getPoruka());
         }
-        obrisiUnos();
+        obrisiUnos();*/
     }//GEN-LAST:event_btnDodajActionPerformed
 
     private void btnTraziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraziActionPerformed
