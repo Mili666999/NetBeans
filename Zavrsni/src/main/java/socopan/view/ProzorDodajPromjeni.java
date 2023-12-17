@@ -4,8 +4,10 @@
  */
 package socopan.view;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import socopan.controller.ObradaDodajPromjeni;
+import socopan.controller.ObradaKategorija;
 import socopan.model.AOL;
 import socopan.model.Artikal;
 import socopan.model.Kategorija;
@@ -27,6 +29,7 @@ public class ProzorDodajPromjeni extends javax.swing.JFrame implements SocopanVi
     public ProzorDodajPromjeni() {
         initComponents();
         obrisiUnos();
+        ucitajKategorije();
     }
     
     private void obrisiUnos(){
@@ -37,6 +40,20 @@ public class ProzorDodajPromjeni extends javax.swing.JFrame implements SocopanVi
         //ucitajOblike();
         //ucitajLokacije();
     
+    }
+    
+      private void ucitajKategorije(){
+        DefaultComboBoxModel<Kategorija> m = new DefaultComboBoxModel<>();
+       
+        Kategorija k = new Kategorija();
+        k.setId(0);
+        k.setNaziv("Odaberite kategoriju");
+        m.addElement(k);
+       
+        m.addAll(new ObradaKategorija().read());
+        cmbKategorije.setModel(m);
+        cmbKategorije.repaint();
+       
     }
 
     /**
@@ -358,41 +375,6 @@ public class ProzorDodajPromjeni extends javax.swing.JFrame implements SocopanVi
     private void btnObrisiUnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnObrisiUnosActionPerformed
         obrisiUnos();
     }//GEN-LAST:event_btnObrisiUnosActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProzorDodajPromjeni.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProzorDodajPromjeni.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProzorDodajPromjeni.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProzorDodajPromjeni.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProzorDodajPromjeni().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
